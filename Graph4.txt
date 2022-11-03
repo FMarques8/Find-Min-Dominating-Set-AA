@@ -1,0 +1,332 @@
+graph [
+  node [
+    id 0
+    label "1"
+    pos 20.88018270864401
+    pos 6.122854570650182
+    n_edges 6
+  ]
+  node [
+    id 1
+    label "2"
+    pos 11.014088002849533
+    pos 3.587937085083316
+    n_edges 8
+  ]
+  node [
+    id 2
+    label "3"
+    pos 3.3991805893360496
+    pos 4.315696842106554
+    n_edges 10
+  ]
+  node [
+    id 3
+    label "4"
+    pos 17.641062773888976
+    pos 4.932963858498068
+    n_edges 9
+  ]
+  node [
+    id 4
+    label "5"
+    pos 12.552994621802771
+    pos 3.6485167669102228
+    n_edges 8
+  ]
+  node [
+    id 5
+    label "6"
+    pos 8.346578310804768
+    pos 3.1869763338992088
+    n_edges 9
+  ]
+  node [
+    id 6
+    label "7"
+    pos 14.6344268924326
+    pos 4.106102891627433
+    n_edges 7
+  ]
+  node [
+    id 7
+    label "8"
+    pos 15.499731889936424
+    pos 20.675090612651047
+    n_edges 10
+  ]
+  node [
+    id 8
+    label "9"
+    pos 11.605090108880503
+    pos 17.757770926618235
+    n_edges 5
+  ]
+  node [
+    id 9
+    label "10"
+    pos 3.687738554750543
+    pos 15.714866677439058
+    n_edges 10
+  ]
+  node [
+    id 10
+    label "11"
+    pos 14.436243434345007
+    pos 14.311513013157924
+    n_edges 10
+  ]
+  node [
+    id 11
+    label "12"
+    pos 20.202270065422994
+    pos 7.626662772406329
+    n_edges 11
+  ]
+  node [
+    id 12
+    label "13"
+    pos 6.054064210293994
+    pos 8.131494994325546
+    n_edges 8
+  ]
+  node [
+    id 13
+    label "14"
+    pos 15.990524826113294
+    pos 12.959612720305735
+    n_edges 5
+  ]
+  edge [
+    source 0
+    target 13
+  ]
+  edge [
+    source 0
+    target 11
+  ]
+  edge [
+    source 0
+    target 12
+  ]
+  edge [
+    source 0
+    target 9
+  ]
+  edge [
+    source 0
+    target 3
+  ]
+  edge [
+    source 0
+    target 6
+  ]
+  edge [
+    source 1
+    target 6
+  ]
+  edge [
+    source 1
+    target 2
+  ]
+  edge [
+    source 1
+    target 7
+  ]
+  edge [
+    source 1
+    target 10
+  ]
+  edge [
+    source 1
+    target 8
+  ]
+  edge [
+    source 1
+    target 4
+  ]
+  edge [
+    source 1
+    target 9
+  ]
+  edge [
+    source 1
+    target 11
+  ]
+  edge [
+    source 2
+    target 7
+  ]
+  edge [
+    source 2
+    target 12
+  ]
+  edge [
+    source 2
+    target 11
+  ]
+  edge [
+    source 2
+    target 4
+  ]
+  edge [
+    source 2
+    target 10
+  ]
+  edge [
+    source 2
+    target 9
+  ]
+  edge [
+    source 2
+    target 3
+  ]
+  edge [
+    source 2
+    target 5
+  ]
+  edge [
+    source 2
+    target 6
+  ]
+  edge [
+    source 3
+    target 5
+  ]
+  edge [
+    source 3
+    target 10
+  ]
+  edge [
+    source 3
+    target 4
+  ]
+  edge [
+    source 3
+    target 7
+  ]
+  edge [
+    source 3
+    target 11
+  ]
+  edge [
+    source 3
+    target 12
+  ]
+  edge [
+    source 3
+    target 8
+  ]
+  edge [
+    source 4
+    target 9
+  ]
+  edge [
+    source 4
+    target 7
+  ]
+  edge [
+    source 4
+    target 10
+  ]
+  edge [
+    source 4
+    target 5
+  ]
+  edge [
+    source 4
+    target 11
+  ]
+  edge [
+    source 5
+    target 10
+  ]
+  edge [
+    source 5
+    target 7
+  ]
+  edge [
+    source 5
+    target 8
+  ]
+  edge [
+    source 5
+    target 12
+  ]
+  edge [
+    source 5
+    target 11
+  ]
+  edge [
+    source 5
+    target 9
+  ]
+  edge [
+    source 6
+    target 10
+  ]
+  edge [
+    source 6
+    target 12
+  ]
+  edge [
+    source 6
+    target 11
+  ]
+  edge [
+    source 6
+    target 9
+  ]
+  edge [
+    source 7
+    target 10
+  ]
+  edge [
+    source 7
+    target 13
+  ]
+  edge [
+    source 7
+    target 12
+  ]
+  edge [
+    source 7
+    target 9
+  ]
+  edge [
+    source 7
+    target 11
+  ]
+  edge [
+    source 8
+    target 10
+  ]
+  edge [
+    source 8
+    target 11
+  ]
+  edge [
+    source 9
+    target 13
+  ]
+  edge [
+    source 9
+    target 11
+  ]
+  edge [
+    source 9
+    target 12
+  ]
+  edge [
+    source 10
+    target 13
+  ]
+  edge [
+    source 10
+    target 12
+  ]
+  edge [
+    source 11
+    target 13
+  ]
+]
