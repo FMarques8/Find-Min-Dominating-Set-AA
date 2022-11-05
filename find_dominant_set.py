@@ -216,28 +216,29 @@ def is_dom_set(G, D):
     return True
 
 
-
-
 def find_dom_sets(G):
     """
     Finds all possible dominating sets in a given graph G. First it creates every possible combinations, then it keeps 
-    only the dominant sets
+    only the dominant sets. Skips sets that have the same length as the graph since that set is always a dominant set.
     """
 
     nodes_arr = G.nodes
-    subsets = [list(S) for l in range(1, len(nodes_arr)) for S in itertools.combinations(nodes_arr, l)] # every possible set of vertices from G
+    subsets = [list(S) for l in range(1, len(nodes_arr)) for S in itertools.combinations(nodes_arr, l+1)] # every possible set of vertices from G
 
     dom_sets = []
 
-    edges = G.edges
-
     for D in subsets: 
+        if len(D) == len(G):
+            dom_sets.append(tuple(D))
+            continue
+
         if is_dom_set(G, D):
             dom_sets.append(tuple(D)) #list with every dominant set of given graph
 
     return dom_sets
 
-    
+
+# # Creating new graphs 
 # for i in range(5): #creates 5 random graphs and stores them
 #     m = rand.randint(4,60)
 #     n = round(m/4)
@@ -246,8 +247,45 @@ def find_dom_sets(G):
 
 G_lst = read_Graphs()
 
-print(G_lst)
+# dom_sets = []
 
-dom_sets = []
-for i in range(len(G_lst)):
-    dom_sets.append(find_dom_sets(G_lst[i][0]))
+# for i in range(len(G_lst)):
+#     d1 = find_dom_sets(G_lst[i][0])
+
+# dom_sets = find_dom_sets(G_lst[-1][0])
+
+# ####
+# # Finds minimum dominant sets
+# ####
+
+# lengths = lambda lst: [len(x) for x in lst] # returns length of every dominant set of lst
+
+# min_sets= lambda lst: [x for x in lst if len(x) == np.array(lengths(lst)).min()] # finds sets with length equal to minimum set length
+
+# print(dom_sets)
+# print(lengths)
+# print("min dom sets")
+#print(min_sets(dom_sets))
+
+####
+# Greedy heuristic
+# Find the node with most edges and remove that and every node connected to it, update edges with removed nodes and move to the next one
+# Do this to find every minimum dominating set: once the length of the dominating set is bigger than the last one, finish the process.
+####
+
+def greedy_min_dom_set(G):
+    """
+    Greedy heuristic based algorithm to find minimum dominating sets of graph G.
+    """
+    edges = [list(e) for e in G.edges]
+    #edges = G.edges
+    #print("here")
+    print(edges)
+
+    node_connections = []
+    for n in G.nodes:
+        if n in edges:
+            print("here")
+
+
+greedy_min_dom_set(G_lst[0][0])
