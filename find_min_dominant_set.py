@@ -1,14 +1,12 @@
 # Brute force and a greedy heuristic algorithm to solve project 1 problem 16 - find the dominant set of a graph G
 # Francisco Marques - 97639 Mestrado em Ciência de Dados - Algoritmos Avançados
 
-
 import networkx as nx
 import random as rand
 import matplotlib.pyplot as plt
 import os
 import itertools
 import time
-
 
 ####
 # Graph creation, writting, reading and visualization
