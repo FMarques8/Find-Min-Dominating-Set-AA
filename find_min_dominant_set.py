@@ -1,4 +1,7 @@
-import numpy as np
+# Brute force and a greedy heuristic algorithm to solve project 1 problem 16 - find the dominant set of a graph G
+# Francisco Marques - 97639 Mestrado em Ciência de Dados - Algoritmos Avançados
+
+
 import networkx as nx
 import random as rand
 import matplotlib.pyplot as plt
@@ -11,23 +14,14 @@ import time
 # Graph creation, writting, reading and visualization
 ####
 
-
-seed = 97639 # Student number as seed
-rand.seed(seed) # Sets new 'random' module seed
-
-m = 30# Maximum number of edges
-n = round(m/2)# Number of vertices, a fraction of the maximum number of edges
-
-graph_counter = 0
-
-def create_Graph():
+def create_Graph(edge_size, node_frac):
     """
     Creates a new random Graph object with maximum m edges and n nodes. Vertices are separated by atleast 
     0.1 unit of each other. Self-loops can be accepted by commenting the correct condition segment below.
     """
 
-    global graph_counter
-    graph_counter += 1 
+    m = edge_size
+    n = m * node_frac
 
     G = nx.Graph() # Initializes object 
 
@@ -125,12 +119,12 @@ def create_Graph():
 
     return G
 
-def write_Graph(G: nx.Graph):
+def write_Graph(G: nx.Graph, id):
     """
     Takes given graph G as input as saves it to a file. Uses GML format
     since it's able to also store node attributes.
     """
-    nx.write_gml(G, "Graph"+str(graph_counter)+".txt") # Graph complete data
+    nx.write_gml(G, "Graph"+str(id)+".txt") # Graph complete data
     print("\nGraph saved.")
 
 def read_Graphs():
@@ -176,19 +170,10 @@ def visualize_Graph(G: nx.Graph):
     plt.title("Graph")
     plt.show()
 
-# Look up networkx dominating set for existing algorithm to compare to created algorithm later
-
 ####
 # Brute force algorithm
+# Finds all dominating sets and returns ones with minimum length.
 ####
-
-## HEURISTIC : GET NODE ATTRIBUTE THAT HAS NUMBER OF EDGES CONNECTED TO THAT NODE, GET THAT NODE AND ADJACENT ONES 'REMOVED' FROM ALGORITHM AND FIND THE REMAINING, REPEAT 
-
-####
-# Exhaustive search algorithm - find all dominating sets then choose lowest vertice one(s).
-####
-
-# create every possible combination, varying in size, then run a check up and keep ones that are valid dominant sets
 
 def is_dom_set(G, D):
     """
@@ -215,7 +200,6 @@ def is_dom_set(G, D):
                     
     return True
 
-
 def find_dom_sets(G):
     """
     Finds all possible dominating sets in a given graph G. First it creates every possible combinations, then it keeps 
@@ -223,7 +207,7 @@ def find_dom_sets(G):
     """
 
     nodes_arr = G.nodes
-    subsets = [list(S) for l in range(1, len(nodes_arr)) for S in itertools.combinations(nodes_arr, l+1)] # every possible set of vertices from G
+    subsets = [list(S) for l in range(0, len(nodes_arr)) for S in itertools.combinations(nodes_arr, l+1)] # every possible set of vertices from G
 
     dom_sets = []
 
@@ -237,55 +221,163 @@ def find_dom_sets(G):
 
     return dom_sets
 
+def find_minimum_dom_sets(G):
+    """
+    Finds all the minimum dominant sets in a given graph G.
+    """
+    dom_sets = find_dom_sets(G)
+    min_len = min([len(x) for x in dom_sets])
+    min_sets = [x for x in dom_sets if len(x) == min_len]
 
-# # Creating new graphs 
-# for i in range(5): #creates 5 random graphs and stores them
-#     m = rand.randint(4,60)
-#     n = round(m/4)
-#     G = create_Graph()
-#     write_Graph(G)
-
-G_lst = read_Graphs()
-
-# dom_sets = []
-
-# for i in range(len(G_lst)):
-#     d1 = find_dom_sets(G_lst[i][0])
-
-# dom_sets = find_dom_sets(G_lst[-1][0])
-
-# ####
-# # Finds minimum dominant sets
-# ####
-
-# lengths = lambda lst: [len(x) for x in lst] # returns length of every dominant set of lst
-
-# min_sets= lambda lst: [x for x in lst if len(x) == np.array(lengths(lst)).min()] # finds sets with length equal to minimum set length
-
-# print(dom_sets)
-# print(lengths)
-# print("min dom sets")
-#print(min_sets(dom_sets))
+    return min_sets
 
 ####
-# Greedy heuristic
-# Find the node with most edges and remove that and every node connected to it, update edges with removed nodes and move to the next one
-# Do this to find every minimum dominating set: once the length of the dominating set is bigger than the last one, finish the process.
+# Greedy heuristic:
+# Find the first node with most edges and remove that and every node connected to it, update edges with removed nodes and move to the next one
+# Repeat until the length of the node list is 0.
 ####
 
 def greedy_min_dom_set(G):
     """
-    Greedy heuristic based algorithm to find minimum dominating sets of graph G.
+    Greedy heuristic based algorithm to find a minimum dominating set of graph G.
     """
+
     edges = [list(e) for e in G.edges]
-    #edges = G.edges
-    #print("here")
-    print(edges)
+    edge_count = {node : 0 for node in G.nodes} # node dictionary with edge counts -> {node: n_of_edges}
 
-    node_connections = []
-    for n in G.nodes:
-        if n in edges:
-            print("here")
+    removed_nodes = []
 
+    while len(edge_count) > 0: # Iterates over nodes until there are none left
 
-greedy_min_dom_set(G_lst[0][0])
+        # Counts the number of edges of each node
+        for edge in edges:
+            for node in list(edge_count.keys()):
+                if node == edge[0] or node == edge[1]:
+                    edge_count[node] += 1
+
+        max_idx = list(edge_count.values()).index(max(edge_count.values())) # index of node with most edges
+        node_to_rem = list(edge_count.keys())[max_idx] # Main node which will be removed
+        removed_nodes.append(node_to_rem) # list of removed nodes which will be the minimum dominating set later
+        
+        adjacent_nodes= []
+
+        for edge in reversed(edges):
+            # Adds the adjacent node to a list and removes the main node edge
+            if edge[0] == node_to_rem:
+                adjacent_nodes.append(edge[1])
+                edges.remove(edge)
+            elif edge[1] == node_to_rem:
+                adjacent_nodes.append(edge[0])
+                edges.remove(edge) 
+
+        # Removed adjacent nodes' edges
+        for adj_node in adjacent_nodes:
+            for edge in reversed(edges):
+                if edge[0] == adj_node or edge[1] == adj_node:
+                    edges.remove(edge)
+        
+        del edge_count[node_to_rem] # Remove main node from dictionary
+
+        # Remove adjacent nodes from dictionary
+        for adj_node in adjacent_nodes:
+            del edge_count[adj_node]
+
+        # Reset edge count with remaining nodes
+        edge_count = {n:0 for n in edge_count}
+
+    return removed_nodes
+
+###
+# Running and timing the 2 algorithms
+###
+def run_brute_force(read_directory = False, n_Graphs = None, edge_size = 100, seed = 97639):
+    """
+    Function to run and time the brute force algorithm. 'read_directory' = True if graph files are already in directory, False to create new ones.
+    'n_Graphs' = None if no specified number of graphs, create up to 8 graphs. Always reads every graph with correct file name.
+    'edge_size' = 100, default is up to 100 edges per graph, randomly determined, minimum size of 50%.
+    """
+
+    rand.seed(seed) # Sets new 'random' module seed. Default is the student number
+
+    # Create and write graphs
+    if read_directory == False:
+        node_size = [0.125, 0.25, 0.5, 0.75] # Node number is fraction of edges number based on project information
+        m = round(edge_size/2) * rand.randint()* round(edge_size/2) # Edge number between 50% and 100% of edge_size
+        if n_Graphs == None:
+            Graphs_number = 4 + rand.randint() * 4 # Between 4 a nd 8 graphs created. 4 is min so we can go through every value of n
+        else:
+            Graphs_number = n_Graphs
+        
+        for id in range(1, Graphs_number + 1):
+            G = create_Graph(edge_size, node_size[id%5])
+            write_Graph(G, id)
+        G_lst = read_Graphs
+    
+    else:
+        G_lst = read_Graphs() # Read all graphs in directory
+
+    # Running the brute force algorithm and printing the minimum dominating sets
+    start = time.time() # Timing the duration of the algorithm
+    for i in range(len(G_lst)):
+        min_sets = find_minimum_dom_sets(G_lst[i][0])
+        print("Graph {i} minimum dominating set:".format(i=i+1))
+        print(min_sets)
+    end = time.time()
+
+    duration = end-start
+    print("########################")
+    print()
+    print("The brute force algorithm lasted {dur} seconds until completion.".format(dur = duration))
+    print()
+    print("########################")
+
+    return min_sets, duration
+
+# Running brute force algorithm
+brute_min_sets, brute_duration = run_brute_force(read_directory=True)
+
+def run_greedy_heuristic(read_directory = False, n_Graphs = None, edge_size = 100, seed = 97639):
+    """
+    Function to run and time the greedy heuristic algorithm. 'read_directory' = True if graph files are already in directory, False to create new ones.
+    'n_Graphs' = None if no specified number of graphs, create up to 8 graphs. Always reads every graph with correct file name.
+    'edge_size' = 100, default is up to 100 edges per graph, randomly determined, minimum size of 50%.
+    """
+
+    rand.seed(seed) # Sets new 'random' module seed. Default is the student number
+
+    # Create and write graphs
+    if read_directory == False:
+        node_size = [0.125, 0.25, 0.5, 0.75] # Node number is fraction of edges number based on project information
+        m = round(edge_size/2) * rand.randint()* round(edge_size/2) # Edge number between 50% and 100% of edge_size
+        if n_Graphs == None:
+            Graphs_number = 4 + rand.randint() * 4 # Between 4 a nd 8 graphs created. 4 is min so we can go through every value of n
+        else:
+            Graphs_number = n_Graphs
+        
+        for id in range(1, Graphs_number + 1):
+            G = create_Graph(edge_size, node_size[id%5])
+            write_Graph(G, id)
+        G_lst = read_Graphs
+    
+    else:
+        G_lst = read_Graphs() # Read all graphs in directory
+    
+    # Running the greedy heuristic algorithm and printing the minimum dominating sets
+    start = time.time() # Timing the duration of the algorithm
+    for i in range(len(G_lst)):
+        min_set = greedy_min_dom_set(G_lst[i][0])
+        print("Graph {i} minimum dominating set:".format(i=i+1))
+        print(min_set)
+    end = time.time()
+
+    duration = end-start
+    print("########################")
+    print()
+    print("The greedy heuristic algorithm lasted {dur} seconds until completion.".format(dur = duration))
+    print()
+    print("########################")
+
+    return min_set, duration
+
+# Running the greedy heuristic algorithm
+greedy_set, greedy_dur = run_greedy_heuristic(read_directory=True)
