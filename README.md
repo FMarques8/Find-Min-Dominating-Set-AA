@@ -1,4 +1,4 @@
-# Find-Min-Dominating-Set-AA
+# Find the Mininimum Dominating Set
 ### Brute force and a greedy heuristic algorithm to find dominant sets of a graph.
 ### Project for a class of my masters which I'm enjoying a lot and is being challenging.
 
