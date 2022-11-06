@@ -7,5 +7,7 @@
 
 ### Decided to compare the running time and algorithm complexity of my is_dom_set function to the networkx function is_dominating_set which is very efficient since it applies graph theory to the verification instead of manually checking the nodes and their connections.
 
+
+# Licensing and Disclaimer
 #### Feel free to use this code as you see fit, for any questions related contact me via any contact detail on my profile page.
 #### Disclaimer: this code was built from scratch by myself, however a huge contribution to the mental strategy needed for the implementation is thanks to the pseudo-code by 'ravenspoint' on the thread https://stackoverflow.com/questions/74081159/check-if-its-a-dominant-set-of-a-graph (last opened in: 11:11pm 11/06/2022 [MM/DD/YYYY]).
