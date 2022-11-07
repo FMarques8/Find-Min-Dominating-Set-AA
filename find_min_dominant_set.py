@@ -329,7 +329,11 @@ def run_brute_force(read_directory = False, n_Graphs = None, edge_size = 100, se
     return min_sets, duration
 
 # Running brute force algorithm
-brute_min_sets, brute_duration = run_brute_force(read_directory=True)
+brute_dur_average= []
+for i in range(10):
+    brute_min_sets, brute_duration = run_brute_force(read_directory=True)
+    brute_dur_average.append(brute_duration)
+brute_dur_average = sum(brute_dur_average)/len(brute_dur_average)
 
 def run_greedy_heuristic(read_directory = False, n_Graphs = None, edge_size = 100, seed = 97639):
     """
@@ -375,4 +379,79 @@ def run_greedy_heuristic(read_directory = False, n_Graphs = None, edge_size = 10
     return min_set, duration
 
 # Running the greedy heuristic algorithm
-greedy_set, greedy_dur = run_greedy_heuristic(read_directory=True)
+greedy_dur_average= []
+for i in range(10):
+    greedy_set, greedy_dur = run_greedy_heuristic(read_directory=True)
+    greedy_dur_average.append(greedy_dur)
+greedy_dur_average = sum(greedy_dur_average)/len(greedy_dur_average)
+
+
+# Find min dominating sets using networkx and time it
+def nx_algorithm(read_directory = False, n_Graphs = None, edge_size = 100, seed = 97639):
+    """
+    Function to run and time the algorithm making use of networkx functions. 'read_directory' = True if graph files are already in directory, False to create new ones.
+    'n_Graphs' = None if no specified number of graphs, create up to 8 graphs. Always reads every graph with correct file name.
+    'edge_size' = 100, default is up to 100 edges per graph, randomly determined, minimum size of 50%.
+    """
+
+    rand.seed(seed) # Sets new 'random' module seed. Default is the student number
+
+    # Create and write graphs
+    if read_directory == False:
+        node_size = [0.125, 0.25, 0.5, 0.75] # Node number is fraction of edges number based on project information
+        m = round(edge_size/2) * rand.randint()* round(edge_size/2) # Edge number between 50% and 100% of edge_size
+        if n_Graphs == None:
+            Graphs_number = 4 + rand.randint() * 4 # Between 4 a nd 8 graphs created. 4 is min so we can go through every value of n
+        else:
+            Graphs_number = n_Graphs
+        
+        for id in range(1, Graphs_number + 1):
+            G = create_Graph(edge_size, node_size[id%5])
+            write_Graph(G, id)
+        G_lst = read_Graphs
+    
+    else:
+        G_lst = read_Graphs() # Read all graphs in directory
+    
+    # Running the greedy heuristic algorithm and printing the minimum dominating sets
+    start = time.time() # Timing the duration of the algorithm
+    for i in range(len(G_lst)):
+        subsets = [list(S) for l in range(0, len(G_lst[i][0].nodes)) for S in itertools.combinations(G_lst[i][0].nodes, l+1)] # creates every possible subset of graph G
+        dom_sets = [D for D in subsets if nx.is_dominating_set(G_lst[i][0], D)] # list with all dominant sets
+        lengths = [len(D) for D in dom_sets] # list with set lenghts
+        min_sets = [D for D in dom_sets if len(D) == min(lengths)] # minimum dominating sets
+        print("Graph {i} minimum dominating sets:".format(i=i+1))
+        print(min_sets)
+    end = time.time()
+
+    duration = end-start
+    print("########################")
+    print()
+    print("The networkx based algorithm lasted {dur} seconds until completion.".format(dur = duration))
+    print()
+    print("########################")
+
+    return min_sets, duration
+
+# Running networkx function based algorithm
+
+nx_dur_average= []
+for i in range(10):
+    nx_sets, nx_dur = nx_algorithm(read_directory=True)
+    nx_dur_average.append(nx_dur)
+nx_dur_average = sum(nx_dur_average)/len(nx_dur_average)
+
+print("############")
+print("Brute force average running time: {dur} seconds.".format(dur = round(brute_dur_average,7)))
+print("############")
+print()
+
+print("############")
+print("Greedy heuristic average running time: {dur} seconds.".format(dur = round(greedy_dur_average,7)))
+print("############")
+print()
+
+print("############")
+print("nx based algorithm average running time: {dur} seconds.".format(dur = round(nx_dur_average, 7)))
+print("############")
+
