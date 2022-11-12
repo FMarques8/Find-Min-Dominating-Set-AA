@@ -390,53 +390,80 @@ def nx_algorithm():
 # Then read them into list
 p = 10
 # create_bunch(p)
-G_lst = read_Graphs()
+
+def get_results():
+    # Running brute force algorithm
+    brute_min_sets, brute_dur = run_brute_force()
+    brute_dur_average = sum(brute_dur)/len(brute_dur)
 
 
-# Running brute force algorithm
-brute_min_sets, brute_dur = run_brute_force()
-brute_dur_average = sum(brute_dur)/len(brute_dur)
+    # Running the greedy heuristic algorithm
+    greedy_sets, greedy_dur = run_greedy_heuristic()
+    greedy_dur_average = sum(greedy_dur)/len(greedy_dur)
+
+    # Running networkx function based algorithm
+    nx_sets, nx_dur = nx_algorithm()
+    nx_dur_average = sum(nx_dur)/len(nx_dur)
+
+    with open('results.txt', 'w') as f:
+
+        f.write("Brute force\n")
+        f.write("Average {dur}\n".format(dur = round(brute_dur_average,7)))
+        for dur in brute_dur: 
+            f.write("{d}\t".format(d = dur))
+        print("############")
+        print("Brute force average running time: {dur} seconds.".format(dur = round(brute_dur_average,7)))
+        print("############")
+        print()
+
+        f.write("\n\nGreedy heuristic\n".format(p = p))
+        f.write("Average {dur}\n".format(dur = round(greedy_dur_average, 7)))
+        for dur in greedy_dur: 
+            f.write("{d}\t".format(d = dur))
+        print("############")
+        print("Greedy heuristic average running time: {dur} seconds.".format(dur = round(greedy_dur_average,7)))
+        print("############")
+        print()
+
+        f.write("\n\nnx based algorithm\n".format(p = p))
+        f.write("Average {dur}\n".format(dur = round(nx_dur_average, 7)))
+        for dur in nx_dur: 
+            f.write("{d}\t".format(d = dur))
+        print("############")
+        print("nx based algorithm average running time: {dur} seconds.".format(dur = round(nx_dur_average, 7)))
+        print("############")
+
+def see_results():
+    with open("results.txt", 'r') as f:
+        lines = f.readlines()
+        line_lst = []
+        averages = []
+        times = []
+
+        for line in lines:
+            line_lst.append(line.strip().split())
+
+        for e in line_lst:
+            if 'Average' in e:
+                averages.append(float(e[1]))    
+            
+            if line_lst.index(e)%4 == 2:
+                times.append([float(x) for x in e])
+
+    print("Averages")
+    print(averages)
+    print("Times")
+    print(times)
+
+    graphs_n = [x for x in range(1,p+1)] 
+    plt.plot(graphs_n, times[0], '-o', label= "Brute force")
+    plt.plot(graphs_n, times[1], '-o', label = "Greedy heuristic")
+    plt.plot(graphs_n, times[2], '-o', label = "nx function")
+    plt.legend()
+    plt.ylabel("Time (s)")
+    plt.xlabel("Graph number")
+    plt.xlim([0.8,10.2])
+    plt.show()
 
 
-# Running the greedy heuristic algorithm
-greedy_sets, greedy_dur = run_greedy_heuristic()
-greedy_dur_average = sum(greedy_dur)/len(greedy_dur)
-
-# Running networkx function based algorithm
-nx_sets, nx_dur = nx_algorithm()
-nx_dur_average = sum(nx_dur)/len(nx_dur)
-
-with open('results.txt', 'w') as f:
-
-    f.write("Brute force - {p}\n".format(p = p))
-    f.write("Average time: {dur}\n".format(dur = round(brute_dur_average,7)))
-    f.write("Times\n")
-    for dur in brute_dur: 
-        f.write("{d}\t".format(d = dur))
-    f.write("\n###################\n\n")
-    print("############")
-    print("Brute force average running time: {dur} seconds.".format(dur = round(brute_dur_average,7)))
-    print("############")
-    print()
-
-    f.write("Greedy heuristic - {p}\n".format(p = p))
-    f.write("Average time: {dur}\n".format(dur = round(greedy_dur_average, 7)))
-    f.write("Times\n")
-    for dur in greedy_dur: 
-        f.write("{d}\t".format(d = dur))
-    f.write("###################\n\n")
-    print("############")
-    print("Greedy heuristic average running time: {dur} seconds.".format(dur = round(greedy_dur_average,7)))
-    print("############")
-    print()
-
-    f.write("nx based algorithm - {p}\n".format(p = p))
-    f.write("Average time: {dur}\n".format(dur = round(nx_dur_average, 7)))
-    f.write("Times\n")
-    for dur in nx_dur: 
-        f.write("{d}\t".format(d = dur))
-    f.write("###################")
-    print("############")
-    print("nx based algorithm average running time: {dur} seconds.".format(dur = round(nx_dur_average, 7)))
-    print("############")
-
+see_results()
