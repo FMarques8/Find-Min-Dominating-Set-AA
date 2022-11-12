@@ -1,0 +1,197 @@
+graph [
+  node [
+    id 0
+    label "1"
+    pos 6.887105156893138
+    pos 8.238091420134538
+    n_edges 3
+  ]
+  node [
+    id 1
+    label "2"
+    pos 2.0295251339863976
+    pos 9.760682262866482
+    n_edges 3
+  ]
+  node [
+    id 2
+    label "3"
+    pos 8.081383111185461
+    pos 14.328519417073721
+    n_edges 3
+  ]
+  node [
+    id 3
+    label "4"
+    pos 2.5972368999215236
+    pos 2.125468003227219
+    n_edges 5
+  ]
+  node [
+    id 4
+    label "5"
+    pos 9.635076032729398
+    pos 1.8417564097770414
+    n_edges 2
+  ]
+  node [
+    id 5
+    label "6"
+    pos 5.720899221297397
+    pos 19.883151514365558
+    n_edges 5
+  ]
+  node [
+    id 6
+    label "7"
+    pos 4.620975078119382
+    pos 2.3576997964777804
+    n_edges 2
+  ]
+  node [
+    id 7
+    label "8"
+    pos 10.421470273184001
+    pos 15.372341502539408
+    n_edges 4
+  ]
+  node [
+    id 8
+    label "9"
+    pos 3.271952550038585
+    pos 20.27113304066408
+    n_edges 4
+  ]
+  node [
+    id 9
+    label "10"
+    pos 20.684004983948256
+    pos 8.068552574298012
+    n_edges 3
+  ]
+  node [
+    id 10
+    label "11"
+    pos 3.526459617163681
+    pos 6.880308823511053
+    n_edges 8
+  ]
+  node [
+    id 11
+    label "12"
+    pos 1.481227844072598
+    pos 8.844715541937521
+    n_edges 5
+  ]
+  node [
+    id 12
+    label "13"
+    pos 11.0963224937353
+    pos 5.868481402175009
+    n_edges 5
+  ]
+  edge [
+    source 0
+    target 5
+  ]
+  edge [
+    source 0
+    target 12
+  ]
+  edge [
+    source 0
+    target 10
+  ]
+  edge [
+    source 1
+    target 3
+  ]
+  edge [
+    source 1
+    target 11
+  ]
+  edge [
+    source 1
+    target 6
+  ]
+  edge [
+    source 2
+    target 3
+  ]
+  edge [
+    source 2
+    target 4
+  ]
+  edge [
+    source 2
+    target 8
+  ]
+  edge [
+    source 3
+    target 10
+  ]
+  edge [
+    source 3
+    target 12
+  ]
+  edge [
+    source 3
+    target 5
+  ]
+  edge [
+    source 4
+    target 7
+  ]
+  edge [
+    source 5
+    target 10
+  ]
+  edge [
+    source 5
+    target 8
+  ]
+  edge [
+    source 5
+    target 11
+  ]
+  edge [
+    source 6
+    target 9
+  ]
+  edge [
+    source 7
+    target 9
+  ]
+  edge [
+    source 7
+    target 10
+  ]
+  edge [
+    source 7
+    target 12
+  ]
+  edge [
+    source 8
+    target 10
+  ]
+  edge [
+    source 8
+    target 11
+  ]
+  edge [
+    source 9
+    target 10
+  ]
+  edge [
+    source 10
+    target 12
+  ]
+  edge [
+    source 10
+    target 11
+  ]
+  edge [
+    source 11
+    target 12
+  ]
+]

@@ -1,0 +1,87 @@
+graph [
+  node [
+    id 0
+    label "1"
+    pos 1.447473808903478
+    pos 20.705719042970347
+    n_edges 3
+  ]
+  node [
+    id 1
+    label "2"
+    pos 4.229780990207544
+    pos 12.493867802741164
+    n_edges 3
+  ]
+  node [
+    id 2
+    label "3"
+    pos 10.657310108801461
+    pos 4.845778722440921
+    n_edges 3
+  ]
+  node [
+    id 3
+    label "4"
+    pos 12.82801821945496
+    pos 8.529128801314597
+    n_edges 4
+  ]
+  node [
+    id 4
+    label "5"
+    pos 6.831730874701333
+    pos 7.940659976281333
+    n_edges 1
+  ]
+  node [
+    id 5
+    label "6"
+    pos 4.9377572864484485
+    pos 2.4462351188191014
+    n_edges 1
+  ]
+  node [
+    id 6
+    label "7"
+    pos 8.081318293296517
+    pos 17.111923638235194
+    n_edges 3
+  ]
+  edge [
+    source 0
+    target 3
+  ]
+  edge [
+    source 0
+    target 1
+  ]
+  edge [
+    source 0
+    target 2
+  ]
+  edge [
+    source 1
+    target 4
+  ]
+  edge [
+    source 1
+    target 6
+  ]
+  edge [
+    source 2
+    target 6
+  ]
+  edge [
+    source 2
+    target 3
+  ]
+  edge [
+    source 3
+    target 6
+  ]
+  edge [
+    source 3
+    target 5
+  ]
+]

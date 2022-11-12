@@ -16,7 +16,10 @@ def create_Graph(edge_size, node_frac):
     """
 
     m = edge_size
-    n = m * node_frac
+    n = round(m * node_frac)
+    
+    if n < 3:
+        n += 3
 
     G = nx.Graph() # Initializes object 
 
@@ -72,11 +75,14 @@ def create_Graph(edge_size, node_frac):
                       # This makes sense since there is a limited number of loops possible in a graph, even if self-loops are included
 
         n_edges = rand.randint(1, n)
-        if n_edges > possible_edges: continue
+        if n_edges > possible_edges: 
+            continue
 
         i = 0 
         print(seen_edge)
-        if n_edges == 0 or n_edges >= n: continue
+        
+        if n_edges == 0 or n_edges >= n: 
+            continue
 
         else: # add edges until required random number of edges in a vertex is achieved
             while i < n_edges:
@@ -135,11 +141,11 @@ def read_Graphs():
         for entry in itr:
             if not entry.name.startswith('.'): #excludes hidden files 
                 if entry.name.startswith('Graph') and entry.name.endswith('.txt'):
-                    print(entry.name)
+                    
                     try:
                         G = nx.read_gml(entry.name)
                         id +=1
-                        print("Graph {id} read:".format(id = id))
+                        print("Graph {id} read".format(id = id))
                         print(G)
                         G_info = [G, id]
                         G_lst.append(G_info) # G_info -> [nx.Graph, adj_list, id]
@@ -164,6 +170,21 @@ def visualize_Graph(G: nx.Graph):
     plt.ylabel("y")
     plt.title("Graph")
     plt.show()
+
+def create_bunch(n_Graphs, edge_size = 30, seed = 97639):
+
+    rand.seed(seed)
+
+    """
+    Creates several graphs and writes them to file.
+    """
+    node_size = [0.125, 0.25, 0.5, 0.75] # Node number is fraction of edges number based on project information
+
+    for id in range(1, n_Graphs + 1):
+        m = rand.randint(round(edge_size/5), edge_size) # Edge number between 12.5% and 102.5% of edge_size   
+        G = create_Graph(m, node_size[rand.randint(0,3)])
+        write_Graph(G, id)
+
 
 ####
 # Brute force algorithm
@@ -203,7 +224,7 @@ def find_dom_sets(G):
 
     nodes_arr = G.nodes
     subsets = [list(S) for l in range(0, len(nodes_arr)) for S in itertools.combinations(nodes_arr, l+1)] # every possible set of vertices from G
-
+    print(len(subsets))
     dom_sets = []
 
     for D in subsets: 
@@ -282,176 +303,140 @@ def greedy_min_dom_set(G):
 
     return removed_nodes
 
-###
-# Running and timing the 2 algorithms
-###
-def run_brute_force(read_directory = False, n_Graphs = None, edge_size = 100, seed = 97639):
+def run_brute_force():
     """
     Function to run and time the brute force algorithm. 'read_directory' = True if graph files are already in directory, False to create new ones.
     'n_Graphs' = None if no specified number of graphs, create up to 8 graphs. Always reads every graph with correct file name.
     'edge_size' = 100, default is up to 100 edges per graph, randomly determined, minimum size of 50%.
     """
 
-    rand.seed(seed) # Sets new 'random' module seed. Default is the student number
-
-    # Create and write graphs
-    if read_directory == False:
-        node_size = [0.125, 0.25, 0.5, 0.75] # Node number is fraction of edges number based on project information
-        m = round(edge_size/2) * rand.randint()* round(edge_size/2) # Edge number between 50% and 100% of edge_size
-        if n_Graphs == None:
-            Graphs_number = 4 + rand.randint() * 4 # Between 4 a nd 8 graphs created. 4 is min so we can go through every value of n
-        else:
-            Graphs_number = n_Graphs
-        
-        for id in range(1, Graphs_number + 1):
-            G = create_Graph(edge_size, node_size[id%5])
-            write_Graph(G, id)
-        G_lst = read_Graphs
-    
-    else:
-        G_lst = read_Graphs() # Read all graphs in directory
+    G_lst = read_Graphs() # Read all graphs in directory
+    min_sets = []
+    durations = []
 
     # Running the brute force algorithm and printing the minimum dominating sets
-    start = time.time() # Timing the duration of the algorithm
+    
     for i in range(len(G_lst)):
-        min_sets = find_minimum_dom_sets(G_lst[i][0])
+        start = time.time() # Timing the duration of the algorithm
+        min_set = find_minimum_dom_sets(G_lst[i][0])
         print("Graph {i} minimum dominating set:".format(i=i+1))
-        print(min_sets)
-    end = time.time()
+        print(min_set)
+        end = time.time()
+        min_sets.append(min_set)
+        durations.append(end-start)
 
-    duration = end-start
-    print("########################")
-    print()
-    print("The brute force algorithm lasted {dur} seconds until completion.".format(dur = duration))
-    print()
-    print("########################")
+    print("Brute force done.")
 
-    return min_sets, duration
+    return min_sets, durations
 
-# Running brute force algorithm
-brute_dur_average= []
-for i in range(10):
-    brute_min_sets, brute_duration = run_brute_force(read_directory=True)
-    brute_dur_average.append(brute_duration)
-brute_dur_average = sum(brute_dur_average)/len(brute_dur_average)
 
-def run_greedy_heuristic(read_directory = False, n_Graphs = None, edge_size = 100, seed = 97639):
+def run_greedy_heuristic():
     """
     Function to run and time the greedy heuristic algorithm. 'read_directory' = True if graph files are already in directory, False to create new ones.
     'n_Graphs' = None if no specified number of graphs, create up to 8 graphs. Always reads every graph with correct file name.
     'edge_size' = 100, default is up to 100 edges per graph, randomly determined, minimum size of 50%.
     """
 
-    rand.seed(seed) # Sets new 'random' module seed. Default is the student number
+    G_lst = read_Graphs()
+    durations = []
+    min_sets = []
 
-    # Create and write graphs
-    if read_directory == False:
-        node_size = [0.125, 0.25, 0.5, 0.75] # Node number is fraction of edges number based on project information
-        m = round(edge_size/2) * rand.randint()* round(edge_size/2) # Edge number between 50% and 100% of edge_size
-        if n_Graphs == None:
-            Graphs_number = 4 + rand.randint() * 4 # Between 4 a nd 8 graphs created. 4 is min so we can go through every value of n
-        else:
-            Graphs_number = n_Graphs
-        
-        for id in range(1, Graphs_number + 1):
-            G = create_Graph(edge_size, node_size[id%5])
-            write_Graph(G, id)
-        G_lst = read_Graphs
-    
-    else:
-        G_lst = read_Graphs() # Read all graphs in directory
-    
     # Running the greedy heuristic algorithm and printing the minimum dominating sets
-    start = time.time() # Timing the duration of the algorithm
     for i in range(len(G_lst)):
+        start = time.time() # Timing the duration of the algorithm
         min_set = greedy_min_dom_set(G_lst[i][0])
         print("Graph {i} minimum dominating set:".format(i=i+1))
         print(min_set)
-    end = time.time()
+        end = time.time()
+        min_sets.append(min_set)
+        durations.append(end-start)
 
-    duration = end-start
-    print("########################")
-    print()
-    print("The greedy heuristic algorithm lasted {dur} seconds until completion.".format(dur = duration))
-    print()
-    print("########################")
+    print("Greedy done.")
 
-    return min_set, duration
-
-# Running the greedy heuristic algorithm
-greedy_dur_average= []
-for i in range(10):
-    greedy_set, greedy_dur = run_greedy_heuristic(read_directory=True)
-    greedy_dur_average.append(greedy_dur)
-greedy_dur_average = sum(greedy_dur_average)/len(greedy_dur_average)
-
+    return min_sets, durations
 
 # Find min dominating sets using networkx and time it
-def nx_algorithm(read_directory = False, n_Graphs = None, edge_size = 100, seed = 97639):
+def nx_algorithm():
     """
     Function to run and time the algorithm making use of networkx functions. 'read_directory' = True if graph files are already in directory, False to create new ones.
     'n_Graphs' = None if no specified number of graphs, create up to 8 graphs. Always reads every graph with correct file name.
     'edge_size' = 100, default is up to 100 edges per graph, randomly determined, minimum size of 50%.
     """
 
-    rand.seed(seed) # Sets new 'random' module seed. Default is the student number
+    G_lst = read_Graphs() # Read all graphs in directory
+    durations = []
+    min_sets = []
 
-    # Create and write graphs
-    if read_directory == False:
-        node_size = [0.125, 0.25, 0.5, 0.75] # Node number is fraction of edges number based on project information
-        m = round(edge_size/2) * rand.randint()* round(edge_size/2) # Edge number between 50% and 100% of edge_size
-        if n_Graphs == None:
-            Graphs_number = 4 + rand.randint() * 4 # Between 4 a nd 8 graphs created. 4 is min so we can go through every value of n
-        else:
-            Graphs_number = n_Graphs
-        
-        for id in range(1, Graphs_number + 1):
-            G = create_Graph(edge_size, node_size[id%5])
-            write_Graph(G, id)
-        G_lst = read_Graphs
-    
-    else:
-        G_lst = read_Graphs() # Read all graphs in directory
-    
     # Running the greedy heuristic algorithm and printing the minimum dominating sets
-    start = time.time() # Timing the duration of the algorithm
+
     for i in range(len(G_lst)):
-        subsets = [list(S) for l in range(0, len(G_lst[i][0].nodes)) for S in itertools.combinations(G_lst[i][0].nodes, l+1)] # creates every possible subset of graph G
+        start = time.time() # Timing the duration of the algorithm
+        subsets = [list(S) for l in range(0, len(G_lst[i][0].nodes)) for S in itertools.combinations(G_lst[i][0].nodes, l+1)] # every possible subset of G
         dom_sets = [D for D in subsets if nx.is_dominating_set(G_lst[i][0], D)] # list with all dominant sets
         lengths = [len(D) for D in dom_sets] # list with set lenghts
-        min_sets = [D for D in dom_sets if len(D) == min(lengths)] # minimum dominating sets
+        min_set = [D for D in dom_sets if len(D) == min(lengths)] # minimum dominating sets
         print("Graph {i} minimum dominating sets:".format(i=i+1))
         print(min_sets)
-    end = time.time()
+        end = time.time()
+        min_sets.append(min_set)
+        durations.append(end-start)
 
-    duration = end-start
-    print("########################")
-    print()
-    print("The networkx based algorithm lasted {dur} seconds until completion.".format(dur = duration))
-    print()
-    print("########################")
+    print("nx done.")
 
-    return min_sets, duration
+    return min_sets, durations
+
+
+# Create 10 graphs
+# Then read them into list
+p = 10
+# create_bunch(p)
+G_lst = read_Graphs()
+
+
+# Running brute force algorithm
+brute_min_sets, brute_dur = run_brute_force()
+brute_dur_average = sum(brute_dur)/len(brute_dur)
+
+
+# Running the greedy heuristic algorithm
+greedy_sets, greedy_dur = run_greedy_heuristic()
+greedy_dur_average = sum(greedy_dur)/len(greedy_dur)
 
 # Running networkx function based algorithm
+nx_sets, nx_dur = nx_algorithm()
+nx_dur_average = sum(nx_dur)/len(nx_dur)
 
-nx_dur_average= []
-for i in range(10):
-    nx_sets, nx_dur = nx_algorithm(read_directory=True)
-    nx_dur_average.append(nx_dur)
-nx_dur_average = sum(nx_dur_average)/len(nx_dur_average)
+with open('results.txt', 'w') as f:
 
-print("############")
-print("Brute force average running time: {dur} seconds.".format(dur = round(brute_dur_average,7)))
-print("############")
-print()
+    f.write("Brute force - {p}\n".format(p = p))
+    f.write("Average time: {dur}\n".format(dur = round(brute_dur_average,7)))
+    f.write("Times\n")
+    for dur in brute_dur: 
+        f.write("{d}\t".format(d = dur))
+    f.write("\n###################\n\n")
+    print("############")
+    print("Brute force average running time: {dur} seconds.".format(dur = round(brute_dur_average,7)))
+    print("############")
+    print()
 
-print("############")
-print("Greedy heuristic average running time: {dur} seconds.".format(dur = round(greedy_dur_average,7)))
-print("############")
-print()
+    f.write("Greedy heuristic - {p}\n".format(p = p))
+    f.write("Average time: {dur}\n".format(dur = round(greedy_dur_average, 7)))
+    f.write("Times\n")
+    for dur in greedy_dur: 
+        f.write("{d}\t".format(d = dur))
+    f.write("###################\n\n")
+    print("############")
+    print("Greedy heuristic average running time: {dur} seconds.".format(dur = round(greedy_dur_average,7)))
+    print("############")
+    print()
 
-print("############")
-print("nx based algorithm average running time: {dur} seconds.".format(dur = round(nx_dur_average, 7)))
-print("############")
+    f.write("nx based algorithm - {p}\n".format(p = p))
+    f.write("Average time: {dur}\n".format(dur = round(nx_dur_average, 7)))
+    f.write("Times\n")
+    for dur in nx_dur: 
+        f.write("{d}\t".format(d = dur))
+    f.write("###################")
+    print("############")
+    print("nx based algorithm average running time: {dur} seconds.".format(dur = round(nx_dur_average, 7)))
+    print("############")
 

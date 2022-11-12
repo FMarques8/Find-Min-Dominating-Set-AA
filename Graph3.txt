@@ -2,76 +2,45 @@ graph [
   node [
     id 0
     label "1"
-    pos 14.156144869856647
-    pos 9.871207682615943
-    n_edges 9
+    pos 9.101026095037344
+    pos 19.756549536452912
+    n_edges 4
   ]
   node [
     id 1
     label "2"
-    pos 6.208054812484864
-    pos 7.4908898470355725
-    n_edges 9
+    pos 8.913603915732597
+    pos 7.106955400684728
+    n_edges 4
   ]
   node [
     id 2
     label "3"
-    pos 16.192369931477522
-    pos 9.975866516165869
-    n_edges 9
+    pos 16.35697796005323
+    pos 17.05012735359512
+    n_edges 4
   ]
   node [
     id 3
     label "4"
-    pos 19.255045587565665
-    pos 1.6973320869589061
-    n_edges 9
+    pos 11.230017712036965
+    pos 5.851583998203135
+    n_edges 4
   ]
   node [
     id 4
     label "5"
-    pos 3.104948398330655
-    pos 2.8792241772077523
-    n_edges 8
-  ]
-  node [
-    id 5
-    label "6"
-    pos 17.743358609790423
-    pos 14.668111183235771
-    n_edges 7
-  ]
-  node [
-    id 6
-    label "7"
-    pos 11.088914303944046
-    pos 17.152894453835472
-    n_edges 9
-  ]
-  node [
-    id 7
-    label "8"
-    pos 13.375473594297677
-    pos 3.755066794248975
-    n_edges 8
-  ]
-  node [
-    id 8
-    label "9"
-    pos 2.6321869379199483
-    pos 8.917367721408917
-    n_edges 9
-  ]
-  node [
-    id 9
-    label "10"
-    pos 18.9853812950391
-    pos 4.651772786491126
-    n_edges 7
+    pos 8.9353699298935
+    pos 16.24829388130724
+    n_edges 4
   ]
   edge [
     source 0
-    target 2
+    target 3
+  ]
+  edge [
+    source 0
+    target 4
   ]
   edge [
     source 0
@@ -79,50 +48,6 @@ graph [
   ]
   edge [
     source 0
-    target 4
-  ]
-  edge [
-    source 0
-    target 3
-  ]
-  edge [
-    source 0
-    target 6
-  ]
-  edge [
-    source 0
-    target 5
-  ]
-  edge [
-    source 0
-    target 7
-  ]
-  edge [
-    source 0
-    target 9
-  ]
-  edge [
-    source 0
-    target 8
-  ]
-  edge [
-    source 1
-    target 9
-  ]
-  edge [
-    source 1
-    target 4
-  ]
-  edge [
-    source 1
-    target 6
-  ]
-  edge [
-    source 1
-    target 8
-  ]
-  edge [
-    source 1
     target 2
   ]
   edge [
@@ -131,110 +56,22 @@ graph [
   ]
   edge [
     source 1
-    target 7
+    target 2
   ]
   edge [
     source 1
-    target 5
+    target 4
   ]
   edge [
     source 2
-    target 5
+    target 4
   ]
   edge [
     source 2
     target 3
   ]
   edge [
-    source 2
-    target 8
-  ]
-  edge [
-    source 2
-    target 4
-  ]
-  edge [
-    source 2
-    target 9
-  ]
-  edge [
-    source 2
-    target 6
-  ]
-  edge [
-    source 2
-    target 7
-  ]
-  edge [
-    source 3
-    target 5
-  ]
-  edge [
-    source 3
-    target 9
-  ]
-  edge [
-    source 3
-    target 7
-  ]
-  edge [
-    source 3
-    target 6
-  ]
-  edge [
     source 3
     target 4
-  ]
-  edge [
-    source 3
-    target 8
-  ]
-  edge [
-    source 4
-    target 8
-  ]
-  edge [
-    source 4
-    target 7
-  ]
-  edge [
-    source 4
-    target 9
-  ]
-  edge [
-    source 4
-    target 6
-  ]
-  edge [
-    source 5
-    target 8
-  ]
-  edge [
-    source 5
-    target 7
-  ]
-  edge [
-    source 5
-    target 6
-  ]
-  edge [
-    source 6
-    target 8
-  ]
-  edge [
-    source 6
-    target 7
-  ]
-  edge [
-    source 6
-    target 9
-  ]
-  edge [
-    source 7
-    target 8
-  ]
-  edge [
-    source 8
-    target 9
   ]
 ]

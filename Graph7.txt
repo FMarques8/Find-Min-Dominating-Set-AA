@@ -2,45 +2,37 @@ graph [
   node [
     id 0
     label "1"
-    pos 20.44630804993018
-    pos 12.083387335582538
+    pos 8.433277138214692
+    pos 18.651536705418035
     n_edges 4
   ]
   node [
     id 1
     label "2"
-    pos 3.025546149262558
-    pos 8.987678693609926
+    pos 13.988305931884938
+    pos 6.738050038145688
     n_edges 4
   ]
   node [
     id 2
     label "3"
-    pos 11.793153015427366
-    pos 6.0883759427568815
+    pos 20.956610717690552
+    pos 10.526397917486662
     n_edges 4
   ]
   node [
     id 3
     label "4"
-    pos 3.4636018048387798
-    pos 16.673337819042857
+    pos 13.93237732297073
+    pos 10.122111364358663
     n_edges 4
   ]
   node [
     id 4
     label "5"
-    pos 19.680448247443767
-    pos 14.690431821770265
+    pos 14.98809924695356
+    pos 18.558257930188876
     n_edges 4
-  ]
-  edge [
-    source 0
-    target 2
-  ]
-  edge [
-    source 0
-    target 4
   ]
   edge [
     source 0
@@ -51,7 +43,11 @@ graph [
     target 1
   ]
   edge [
-    source 1
+    source 0
+    target 2
+  ]
+  edge [
+    source 0
     target 4
   ]
   edge [
@@ -60,15 +56,19 @@ graph [
   ]
   edge [
     source 1
-    target 3
+    target 4
   ]
   edge [
-    source 2
+    source 1
     target 3
   ]
   edge [
     source 2
     target 4
+  ]
+  edge [
+    source 2
+    target 3
   ]
   edge [
     source 3

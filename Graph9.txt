@@ -1,0 +1,54 @@
+graph [
+  node [
+    id 0
+    label "1"
+    pos 11.24543453913903
+    pos 20.24680670106756
+    n_edges 3
+  ]
+  node [
+    id 1
+    label "2"
+    pos 6.754098946412213
+    pos 16.164649300183754
+    n_edges 3
+  ]
+  node [
+    id 2
+    label "3"
+    pos 18.779839579307406
+    pos 7.511584942356128
+    n_edges 3
+  ]
+  node [
+    id 3
+    label "4"
+    pos 8.13326142013578
+    pos 15.83420340059171
+    n_edges 3
+  ]
+  edge [
+    source 0
+    target 2
+  ]
+  edge [
+    source 0
+    target 1
+  ]
+  edge [
+    source 0
+    target 3
+  ]
+  edge [
+    source 1
+    target 3
+  ]
+  edge [
+    source 1
+    target 2
+  ]
+  edge [
+    source 2
+    target 3
+  ]
+]
