@@ -11,8 +11,7 @@ import time
 
 def create_Graph(edge_size, node_frac):
     """
-    Creates a new random Graph object with maximum m edges and n nodes. Vertices are separated by atleast 
-    0.1 unit of each other. Self-loops can be accepted by commenting the correct condition segment below.
+    Creates a new random Graph object with maximum m edges and n nodes.
     """
 
     m = edge_size
@@ -122,8 +121,7 @@ def create_Graph(edge_size, node_frac):
 
 def write_Graph(G: nx.Graph, id):
     """
-    Takes given graph G as input as saves it to a file. Uses GML format
-    since it's able to also store node attributes.
+    Takes given graph G as input as saves it to a file.
     """
     nx.write_gml(G, "Graph"+str(id)+".txt") # Graph complete data
     print("\nGraph saved.")
@@ -172,12 +170,12 @@ def visualize_Graph(G: nx.Graph):
     plt.show()
 
 def create_bunch(n_Graphs, edge_size = 30, seed = 97639):
-
-    rand.seed(seed)
-
     """
     Creates several graphs and writes them to file.
     """
+
+    rand.seed(seed)
+
     node_size = [0.125, 0.25, 0.5, 0.75] # Node number is fraction of edges number based on project information
 
     for id in range(1, n_Graphs + 1):
@@ -218,13 +216,11 @@ def is_dom_set(G, D):
 
 def find_dom_sets(G):
     """
-    Finds all possible dominating sets in a given graph G. First it creates every possible combinations, then it keeps 
-    only the dominant sets. Skips sets that have the same length as the graph since that set is always a dominant set.
+    Finds all possible dominating sets in a given graph G. 
     """
 
     nodes_arr = G.nodes
     subsets = [list(S) for l in range(0, len(nodes_arr)) for S in itertools.combinations(nodes_arr, l+1)] # every possible set of vertices from G
-    print(len(subsets))
     dom_sets = []
 
     for D in subsets: 
@@ -303,11 +299,11 @@ def greedy_min_dom_set(G):
 
     return removed_nodes
 
+
+
 def run_brute_force():
     """
-    Function to run and time the brute force algorithm. 'read_directory' = True if graph files are already in directory, False to create new ones.
-    'n_Graphs' = None if no specified number of graphs, create up to 8 graphs. Always reads every graph with correct file name.
-    'edge_size' = 100, default is up to 100 edges per graph, randomly determined, minimum size of 50%.
+    Function to run and time the brute force algorithm. 
     """
 
     G_lst = read_Graphs() # Read all graphs in directory
@@ -329,12 +325,9 @@ def run_brute_force():
 
     return min_sets, durations
 
-
 def run_greedy_heuristic():
     """
-    Function to run and time the greedy heuristic algorithm. 'read_directory' = True if graph files are already in directory, False to create new ones.
-    'n_Graphs' = None if no specified number of graphs, create up to 8 graphs. Always reads every graph with correct file name.
-    'edge_size' = 100, default is up to 100 edges per graph, randomly determined, minimum size of 50%.
+    Function to run and time the greedy heuristic algorithm.
     """
 
     G_lst = read_Graphs()
@@ -358,9 +351,7 @@ def run_greedy_heuristic():
 # Find min dominating sets using networkx and time it
 def nx_algorithm():
     """
-    Function to run and time the algorithm making use of networkx functions. 'read_directory' = True if graph files are already in directory, False to create new ones.
-    'n_Graphs' = None if no specified number of graphs, create up to 8 graphs. Always reads every graph with correct file name.
-    'edge_size' = 100, default is up to 100 edges per graph, randomly determined, minimum size of 50%.
+    Function to run and time the algorithm making use of networkx functions. 
     """
 
     G_lst = read_Graphs() # Read all graphs in directory
@@ -390,8 +381,13 @@ def nx_algorithm():
 # Then read them into list
 p = 10
 # create_bunch(p)
+G_lst = read_Graphs()
 
 def get_results():
+    """
+    Runs every algorithm and saves times, and averages to file.
+    """
+
     # Running brute force algorithm
     brute_min_sets, brute_dur = run_brute_force()
     brute_dur_average = sum(brute_dur)/len(brute_dur)
@@ -434,6 +430,10 @@ def get_results():
         print("############")
 
 def see_results():
+    """
+    Plots the times from get_results.
+    """
+
     with open("results.txt", 'r') as f:
         lines = f.readlines()
         line_lst = []
@@ -465,5 +465,5 @@ def see_results():
     plt.xlim([0.8,10.2])
     plt.show()
 
-
-see_results()
+visualize_Graph(G_lst[1][0])
+#see_results()
