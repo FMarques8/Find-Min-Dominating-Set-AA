@@ -111,7 +111,7 @@ def create_Graph(edge_size, node_frac):
                     if safeguard == 500: # threshold for cancelling loop, might need to be changed depending on graph size
                         possible_edges = 0
                         break
-                    continue
+                    continue 
                     
     
     print("\n###########")
@@ -402,9 +402,17 @@ brute_dur_average = sum(brute_dur)/len(brute_dur)
 greedy_sets, greedy_dur = run_greedy_heuristic()
 greedy_dur_average = sum(greedy_dur)/len(greedy_dur)
 
+<<<<<<< HEAD
 # Running networkx function based algorithm
 nx_sets, nx_dur = nx_algorithm()
 nx_dur_average = sum(nx_dur)/len(nx_dur)
+=======
+    print("here")
+    print(greedy_sets)
+    # Running networkx function based algorithm
+    nx_sets, nx_dur = nx_algorithm()
+    nx_dur_average = sum(nx_dur)/len(nx_dur)
+>>>>>>> 34e6659 (update)
 
 with open('results.txt', 'w') as f:
 
@@ -440,3 +448,44 @@ with open('results.txt', 'w') as f:
     print("nx based algorithm average running time: {dur} seconds.".format(dur = round(nx_dur_average, 7)))
     print("############")
 
+<<<<<<< HEAD
+=======
+def see_results():
+    """
+    Plots the times from get_results.
+    """
+
+    with open("results.txt", 'r') as f:
+        lines = f.readlines()
+        line_lst = []
+        averages = []
+        times = []
+
+        for line in lines:
+            line_lst.append(line.strip().split())
+
+        for e in line_lst:
+            if 'Average' in e:
+                averages.append(float(e[1]))    
+            
+            if line_lst.index(e)%4 == 2:
+                times.append([float(x) for x in e])
+
+    print("Averages")
+    print(averages)
+    print("Times")
+    print(times)
+
+    graphs_n = [x for x in range(1,p+1)] 
+    plt.plot(graphs_n, times[0], '-o', label= "Brute force")
+    plt.plot(graphs_n, times[1], '-o', label = "Greedy heuristic")
+    plt.plot(graphs_n, times[2], '-o', label = "nx function")
+    plt.legend()
+    plt.ylabel("Time (s)")
+    plt.xlabel("Graph number")
+    plt.xlim([0.8,10.2])
+    plt.show()
+
+#visualize_Graph(G_lst[1][0])
+#see_results()
+>>>>>>> 34e6659 (update)
