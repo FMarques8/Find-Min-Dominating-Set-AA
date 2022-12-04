@@ -1,0 +1,87 @@
+#############################
+BD0/ graphs
+#############################
+
+Graph BD0/Grafo1.txt with 51 nodes and 543 edges.
+4,6,11,23,48,50,
+5,28,33,40,47,50,
+threshold reached: False
+duration: 0.0050008296966552734
+
+Graph BD0/Grafo10.txt with 96 nodes and 1984 edges.
+12,15,36,54,56,62,86,95,
+8,21,35,38,54,60,64,95,
+17,46,55,57,65,67,93,95,
+threshold reached: False
+duration: 0.05301260948181152
+
+Graph BD0/Grafo11.txt with 101 nodes and 2167 edges.
+2,3,5,41,64,73,99,100,
+threshold reached: False
+duration: 0.05954575538635254
+
+Graph BD0/Grafo12.txt with 106 nodes and 3035 edges.
+21,37,42,56,73,95,105,
+12,29,30,32,44,102,105,
+threshold reached: False
+duration: 0.11844182014465332
+
+Graph BD0/Grafo13.txt with 111 nodes and 3330 edges.
+3,5,37,86,109,110,
+threshold reached: False
+duration: 0.14900422096252441
+
+Graph BD0/Grafo14.txt with 116 nodes and 2889 edges.
+1,13,14,64,81,91,106,115,
+threshold reached: False
+duration: 0.11099839210510254
+
+Graph BD0/Grafo15.txt with 121 nodes and 3979 edges.
+16,28,35,73,77,
+threshold reached: False
+duration: 0.2076406478881836
+
+Graph BD0/Grafo16.txt with 126 nodes and 4317 edges.
+0,18,30,31,84,110,125,
+threshold reached: False
+duration: 0.2570197582244873
+
+Graph BD0/Grafo17.txt with 131 nodes and 3695 edges.
+1,68,89,92,104,117,124,130,
+9,13,38,40,42,52,98,110,
+threshold reached: False
+duration: 0.1788616180419922
+
+Graph BD0/Grafo18.txt with 136 nodes and 3988 edges.
+20,96,99,101,103,104,125,134,135,
+threshold reached: False
+duration: 0.29693126678466797
+
+Graph BD0/Grafo19.txt with 141 nodes and 4281 edges.
+2,58,59,90,112,113,134,139,140,
+threshold reached: False
+duration: 0.23898053169250488
+
+Graph BD0/Grafo2.txt with 56 nodes and 652 edges.
+8,11,17,21,40,55,
+threshold reached: False
+duration: 0.007012844085693359
+
+Graph BD0/Grafo20.txt with 146 nodes and 4553 edges.
+51,66,73,92,95,102,105,123,145,
+threshold reached: False
+duration: 0.27588868141174316
+
+Graph BD0/Grafo21.txt with 151 nodes and 6220 edges.
+7,36,39,58,105,108,116,150,
+52,78,84,96,111,121,146,150,
+threshold reached: False
+duration: 0.5227859020233154
+
+Graph BD0/Grafo22.txt with 156 nodes and 6656 edges.
+37,64,66,100,121,144,155,
+38,47,56,86,118,134,155,
+26,28,40,52,99,148,155,
+threshold reached: False
+duration: 0.6003844738006592
+

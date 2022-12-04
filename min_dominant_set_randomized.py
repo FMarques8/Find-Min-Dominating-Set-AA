@@ -5,25 +5,34 @@ import os
 import time
 
 
-def read_Graph(fname: str, form: str = 'SW'):
+def read_Graph(fname: str, form: str = 'SW', size_check: bool = True, name: str = 'Graph'):
     """
-    Reads and converts graph depending on type. fname = file name
-    form = graph format
+    Reads and converts graph depending on type. fname = file name;
+    form = graph format; name = 'Graph', name for later saving to file
+    size_check = True verifies the number of nodes in graph.
     Current supported graph formats are S&W, Mendeley data, Stanford
     and custom created graphs with find_min_dominating_sets.
     """
 
     if form == 'SW' or form == 'stanford':
         
-        G = nx.Graph()
+        G = nx.Graph(name = name)
         with open(fname, 'r') as f:
             
             if form == 'SW':
                 for i in range(4):
                     f.readline() #skips first 4 lines if its a graph from S&W
-            
+                    f.readline()
+                    n = int(f.readline().strip().split()[0])
+                    
+                    # if algorithm is loading graphs, it only cares about number of nodes
+                    if size_check == True:
+                        if n > 500:
+                            return True
+                        else:
+                            return False
+                    
             lines = f.readlines()
-
             for line in lines:
                 
                 edge = [int(u) for u in line.strip().split()[0:2]] #reads only first 2 entries of each line
@@ -31,16 +40,36 @@ def read_Graph(fname: str, form: str = 'SW'):
                     continue
                 if edge[0] != edge[1]:
                     G.add_edge(edge[0], edge[1])
+            
+            # for the stanford graph used we can only check number of nodes after creating the graph
+            if size_check == True:
+                if len(G.nodes) > 500:
+                    return True
+                else:
+                    return False
                     
     elif form == 'custom': #previous project graphs -> very tiny
         G = nx.read_gml(fname)
+        G['name'] = name
+        if size_check == True:
+            if len(G.nodes) > 500:
+                return True
+            else:
+                return False
     
     elif form == 'BD': #adjacency matrix
         with open(fname, 'r') as f:
+            # n = int(f.readline().strip().split()[0])
             n = int(f.readline().strip().split()[0])
             
+            if size_check == True:
+                if n > 500:
+                    return True
+                else:
+                    return False
+            
             # initializes graph and adds nodes from range
-            G = nx.Graph()
+            G = nx.Graph(name = name)
             G.add_nodes_from(range(n))
             i = 0 # index
 
@@ -73,14 +102,15 @@ def read_Graph(fname: str, form: str = 'SW'):
 
 # MIGHT BE A GOOD IDEA TO USE BOTH METHODS
 
-def random_node_min_dom_sets(G: nx.Graph, p: int = 20):
+def random_nodes_min_dom_sets(G: nx.Graph, p: int = 20):
     """
     Returns up to p minimum dominant sets of G. Randomly chooses the nodes
     to remove, using the greedy heuristic used previously.
     """
     dom_sets = []
     threshold = 0 # threshold in case it doesnt find new dominant sets
-
+    reached_threshold = False # variable to let us know if the threshold was reached or not
+    
     for i in range(p):
         edges = [list(e) for e in G.edges]
         nodes = [v for v in G.nodes]
@@ -89,10 +119,9 @@ def random_node_min_dom_sets(G: nx.Graph, p: int = 20):
         while len(nodes) > 0: # Iterates over nodes until there are none left
             
             # as it randomly chooses nodes, there is no need to count the number of connections for each node
-            rndm_node = nodes[random.randint(0, len(nodes)-1)] # chooses random node, will also be removed
+            rndm_node = nodes[random.randrange(0, len(nodes))] # chooses random node, will also be removed
             while rndm_node not in nodes:
-                rndm_node = nodes[random.randint(0, len(nodes)-1)]
-            # len(G)-1 because randint includes both extremes into the function, and the last node is len(G)-1
+                rndm_node = nodes[random.randrange(0, len(nodes))]
             
             removed_nodes.append(rndm_node) # list of removed nodes which will be the minimum dominating set later
             nodes.remove(rndm_node)
@@ -102,13 +131,18 @@ def random_node_min_dom_sets(G: nx.Graph, p: int = 20):
                 # Adds the adjacent node to a list and removes the main node edge
                 if edge[0] == rndm_node:
                     adjacent_nodes.append(edge[1])
-                    nodes.remove(edge[1])
                     edges.remove(edge)
+                    try:
+                        nodes.remove(edge[1])
+                    except ValueError:
+                        continue
                 elif edge[1] == rndm_node:
                     adjacent_nodes.append(edge[0])
-                    nodes.remove(edge[0])
                     edges.remove(edge) 
-                    
+                    try:
+                        nodes.remove(edge[0])
+                    except ValueError:
+                        continue
             # Removed adjacent nodes' edges
             for adj_node in adjacent_nodes:
                 for edge in reversed(edges):
@@ -121,13 +155,14 @@ def random_node_min_dom_sets(G: nx.Graph, p: int = 20):
             i -= 1
             threshold +=1
             
-        if threshold >= 100: #threshold in case new unique dom sets arent found
+        if threshold >= 10000: #threshold in case new unique dom sets arent found
+            reached_threshold = True
             break
     
     len_arr = [len(x) for x in dom_sets] #creates array with length of each dom set
     min_sets = [x for x in dom_sets if len(x) == min(len_arr)] #creates array with minimum dominating sets
     
-    return min_sets
+    return min_sets, reached_threshold
 
 
 def random_size_min_dom_sets(G: nx.Graph, p:int = 20):
@@ -137,6 +172,7 @@ def random_size_min_dom_sets(G: nx.Graph, p:int = 20):
     """
     min_dom_sets = []
     threshold = 0 # threshold in case it doesnt find new dominant sets
+    reached_threshold = False # variable to let us know if the threshold was reached or not
     
     min_size = len(G) #sets the size that will help with minimizing as the size of the graph
     
@@ -148,10 +184,9 @@ def random_size_min_dom_sets(G: nx.Graph, p:int = 20):
         while len(nodes) > 0: # Iterates over nodes until there are none left
             
             # as it randomly chooses nodes, there is no need to count the number of connections for each node
-            rndm_node = nodes[random.randint(0, len(nodes)-1)] # chooses random node, will also be removed
+            rndm_node = nodes[random.randrange(0, len(nodes))] # chooses random node, will also be removed
             while rndm_node not in nodes:
-                rndm_node = nodes[random.randint(0, len(nodes)-1)]
-            # len(G)-1 because randint includes both extremes into the function, and the last node is len(G)-1
+                rndm_node = nodes[random.randrange(0, len(nodes))]
             
             removed_nodes.append(rndm_node) # list of removed nodes which will be the minimum dominating set later
             nodes.remove(rndm_node)
@@ -161,12 +196,19 @@ def random_size_min_dom_sets(G: nx.Graph, p:int = 20):
                 # Adds the adjacent node to a list and removes the main node edge
                 if edge[0] == rndm_node:
                     adjacent_nodes.append(edge[1])
-                    nodes.remove(edge[1])
                     edges.remove(edge)
+                    try:
+                        nodes.remove(edge[1])
+                    except ValueError:
+                        continue
+                    
                 elif edge[1] == rndm_node:
                     adjacent_nodes.append(edge[0])
-                    nodes.remove(edge[0])
-                    edges.remove(edge) 
+                    edges.remove(edge)
+                    try:
+                        nodes.remove(edge[0])
+                    except ValueError:
+                        continue
                     
             # Removed adjacent nodes' edges
             for adj_node in adjacent_nodes:
@@ -185,17 +227,54 @@ def random_size_min_dom_sets(G: nx.Graph, p:int = 20):
             i -= 1
             threshold +=1
             
-        if threshold >= 100: #threshold in case new unique dom sets arent found
+        if threshold >= 10000: #threshold in case new unique dom sets arent found
+            reached_threshold = True
             break
     
-    return min_dom_sets
+    return min_dom_sets, reached_threshold
+
+
+def nx_min_dom_sets(G:nx.Graph, p:int = 20):
+    """
+    Returns up to p minimum dominating sets
+    """
+    current_min_dominating_set = nx.dominating_set(G) # starting dominating set for comparison in the algorithm
+    minimum_dominating_sets = [current_min_dominating_set] #list with minimum dominating sets
+    
+    threshold = 0 # as this involves a while loop it is advised to use a threshold in case the algorithm gets stuck
+    reached_threshold = False # variable to let us know if the threshold was reached or not
+    
+    while len(minimum_dominating_sets) < p:
+        random_set = random.sample(range(0,len(G)), random.randrange(1,len(G))) # creates random subset which will be tested
+        
+        if nx.is_dominating_set(G, random_set):
+            if len(random_set) < len(current_min_dominating_set): #if random set is smaller than previous dominating set, replace variables
+                current_min_dominating_set = random_set
+                minimum_dominating_sets = [current_min_dominating_set]
+                
+            elif len(random_set) == len(current_min_dominating_set):
+                minimum_dominating_sets.append(random_set)
+                
+            else:
+                threshold += 1
+        if threshold > 10000:
+            reached_threshold = True
+            break
+        
+    return minimum_dominating_sets, reached_threshold
 
 
 cwdir = os.getcwd() # Please include graph files in same workspace, or change this variable to directory where they are located
 # Assuming that in the graph folder there are no other files other than the graph .txt files
+
 print(cwdir)
-graph_dir = {'custom_tinyG': 'custom', 'stanford': 'stanford', 'SW_Graphs': 'SW', 
-             'BD0': 'BD', 'BD1': 'BD', 'BD2': 'BD', 'BD3': 'BD', 'BD5': 'BD', 'BD6': 'BD'}
+graph_dir = {'BD0': 'BD'}#'custom_tinyG': 'custom', 'stanford': 'stanford', 'SW_Graphs': 'SW', 
+             #'BD0': 'BD', 'BD1': 'BD', 'BD2': 'BD', 'BD3': 'BD', 'BD5': 'BD', 'BD6': 'BD'}
+
+
+######
+## Loading the graphs
+######
 
 G_list = [] # list with every graph, grouped by directory
 
@@ -204,26 +283,94 @@ for dir in graph_dir.keys():
     lst = []
     with os.scandir(cwdir+"/"+dir) as itr:
         for entry in itr:
-            fname = cwdir+"/"+dir+"/"+entry.name
-            print(fname + " loaded.")
-            G = read_Graph(fname = fname, form = graph_dir[dir])
-            lst.append(G)
+            if entry.name.startswith('Grafo'): # skips some files that are not graphs found in the 'BD' folders
+                fname = cwdir+"/"+dir+"/"+entry.name
+                is_large = read_Graph(fname = fname, form = graph_dir[dir], size_check = True, name = dir+"/"+entry.name)
+                print(entry.name)
+                # skips very large graphs, a few will still be computed later but they are computationally heavy
+                # this saves alot of time
+                if is_large:
+                    print(fname+" is too large.")
+                    continue
+                else: # if graph is below certain size (500) appends it to list of graphs
+                    lst.append(read_Graph(fname = fname, form = graph_dir[dir], size_check = False, name = dir+"/"+entry.name))
+                    print(fname + " loaded.")
     G_list.append(lst)
+    
+print("All graphs loaded.")
 
 
-min_sets = []
-times = []
-for group in G_list:
-    sub_min_sets = []
-    sub_times = []
-    for G in group:
-        print(G)
-        start = time.time()
-        sets_min = random_size_min_dom_sets(G, p = 1)
-        end = time.time()
-        sub_min_sets.append(sets_min)
-        sub_times.append(end-start)
-    min_sets.append(sub_min_sets)
-    times.append(sub_times)
+######
+## Running the algorithms for the graphs and saving the results
+######
 
-print(times)
+# if p = 1 results will be highly innacurate
+# the threshold was set to 10000 and it is still triggered alot of times!
+
+# random_size_min_dom_sets needs atleast p=2 to be able to minimize the subsets
+
+# random_nodes_min_dom_sets needs a very high value for p to have a chance to return
+# subsets as minimized as possible, but as it is very heavy the results will not be the best
+# for that function, this was realized after creating the function, but it will still be accounted 
+# for the study
+
+# although nx_min_dom_sets also minimizes the size of the subsets, it is still possible for the function
+# to return false minimum dominating sets, the only way would be to generate every possible subset for each graph
+# this process would take a very long time and its not worth it 
+
+for i in range(len(G_list)):
+    with open((list(graph_dir.keys())[i])+"_random_nodes_results.txt", 'w') as f:
+        f.write("#############################\n")
+        f.write(list(graph_dir.keys())[i] + "/ graphs\n")
+        f.write("#############################\n")
+        f.write("\n")
+        for G in G_list[i][:15]:
+            f.write("Graph {G} with {n} nodes and {e} edges.\n".format(G = G.graph['name'], n = len(G.nodes), e = len(G.edges)))
+            start = time.time()
+            sets_min, threshold = random_nodes_min_dom_sets(G, p = 3)
+            end = time.time()
+            for D in sets_min:
+                for v in D:
+                    f.write(str(v)+",")
+                f.write("\n")
+            f.write("threshold reached: "+ str(threshold) + "\n")
+            f.write("duration: "+ str(end-start) + "\n")
+            f.write("\n")
+
+for i in range(len(G_list)):
+    with open((list(graph_dir.keys())[i])+"_random_size_results.txt", 'w') as f:
+        f.write("#############################\n")
+        f.write(list(graph_dir.keys())[i] + "/ graphs\n")
+        f.write("#############################\n")
+        f.write("\n")
+        for G in G_list[i][:15]:
+            f.write("Graph {G} with {n} nodes and {e} edges.\n".format(G = G.graph['name'], n = len(G.nodes), e = len(G.edges)))
+            start = time.time()
+            sets_min, threshold = random_size_min_dom_sets(G, p = 3)
+            end = time.time()
+            for D in sets_min:
+                for v in D:
+                    f.write(str(v)+",")
+                f.write("\n")
+            f.write("threshold reached: "+ str(threshold) + "\n")
+            f.write("duration: "+ str(end-start) + "\n")
+            f.write("\n")
+
+for i in range(len(G_list)):
+    with open((list(graph_dir.keys())[i])+"_nx_results.txt", 'w') as f:
+        f.write("#############################\n")
+        f.write(list(graph_dir.keys())[i] + "/ graphs\n")
+        f.write("#############################\n")
+        f.write("\n")
+        for G in G_list[i][:15]:
+            f.write("Graph {G} with {n} nodes and {e} edges.\n".format(G = G.graph['name'], n = len(G.nodes), e = len(G.edges)))
+            start = time.time()
+            sets_min, threshold = nx_min_dom_sets(G, p = 3)
+            end = time.time()
+            for D in sets_min:
+                for v in D:
+                    f.write(str(v)+",")
+                f.write("\n")
+            f.write("threshold reached: "+ str(threshold) + "\n")
+            f.write("duration: "+ str(end-start) + "\n")
+            f.write("\n")
