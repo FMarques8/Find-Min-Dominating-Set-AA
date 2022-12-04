@@ -267,10 +267,8 @@ def nx_min_dom_sets(G:nx.Graph, p:int = 20):
 cwdir = os.getcwd() # Please include graph files in same workspace, or change this variable to directory where they are located
 # Assuming that in the graph folder there are no other files other than the graph .txt files
 
-print(cwdir)
-graph_dir = {'BD0': 'BD'}#'custom_tinyG': 'custom', 'stanford': 'stanford', 'SW_Graphs': 'SW', 
-             #'BD0': 'BD', 'BD1': 'BD', 'BD2': 'BD', 'BD3': 'BD', 'BD5': 'BD', 'BD6': 'BD'}
-
+graph_dir = {'custom_tinyG': 'custom', 'stanford': 'stanford', 'SW_Graphs': 'SW', 
+             'BD0': 'BD', 'BD1': 'BD', 'BD2': 'BD', 'BD3': 'BD', 'BD5': 'BD', 'BD6': 'BD'}
 
 ######
 ## Loading the graphs
