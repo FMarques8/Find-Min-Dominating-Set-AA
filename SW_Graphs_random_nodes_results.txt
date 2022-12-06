@@ -1,0 +1,40 @@
+#############################
+SW_Graphs/ graphs
+#############################
+
+Graph SW_Graphs/SWmediumDG.txt with 49 nodes and 122 edges.
+0,4,5,7,11,14,16,18,25,33,35,36,40,47,49,
+0,11,17,18,22,26,27,33,34,35,36,43,44,45,47,
+threshold reached: False
+duration: 0.0029993057250976562
+
+Graph SW_Graphs/SWmediumEWD.txt with 250 nodes and 1269 edges.
+4,9,10,11,24,25,42,45,47,51,52,56,59,61,62,88,92,94,103,117,127,129,136,153,158,162,165,173,177,193,201,202,215,220,221,227,230,237,238,245,
+threshold reached: False
+duration: 0.07901763916015625
+
+Graph SW_Graphs/SWmediumG.txt with 250 nodes and 1265 edges.
+19,23,37,39,42,46,63,67,69,88,90,94,110,111,125,127,129,130,131,132,136,140,145,163,170,175,185,189,190,204,213,215,216,224,226,227,239,240,244,245,
+threshold reached: False
+duration: 0.07000041007995605
+
+Graph SW_Graphs/SWtinyDAG.txt with 8 nodes and 7 edges.
+0,3,6,8,
+threshold reached: False
+duration: 0.0
+
+Graph SW_Graphs/SWtinyDG.txt with 11 nodes and 13 edges.
+0,4,7,8,10,
+threshold reached: False
+duration: 0.0010008811950683594
+
+Graph SW_Graphs/SWtinyEWD.txt with 7 nodes and 7 edges.
+1,6,7,
+threshold reached: False
+duration: 0.0
+
+Graph SW_Graphs/SWtinyG.txt with 9 nodes and 5 edges.
+3,6,8,9,
+threshold reached: False
+duration: 0.0
+

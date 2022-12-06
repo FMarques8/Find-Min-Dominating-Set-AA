@@ -1,0 +1,54 @@
+#############################
+custom_tinyG/ graphs
+#############################
+
+Graph custom_tinyG/Graph1.txt with 8 nodes and 28 edges.
+1,
+threshold reached: False
+duration: 0.0009999275207519531
+
+Graph custom_tinyG/Graph10.txt with 7 nodes and 9 edges.
+5,7,1,6,
+threshold reached: False
+duration: 0.0
+
+Graph custom_tinyG/Graph2.txt with 3 nodes and 3 edges.
+2,
+threshold reached: False
+duration: 0.0
+
+Graph custom_tinyG/Graph3.txt with 5 nodes and 10 edges.
+1,
+threshold reached: False
+duration: 0.0
+
+Graph custom_tinyG/Graph4.txt with 5 nodes and 10 edges.
+1,
+threshold reached: False
+duration: 0.0
+
+Graph custom_tinyG/Graph5.txt with 13 nodes and 26 edges.
+1,12,7,4,5,
+threshold reached: False
+duration: 0.0
+
+Graph custom_tinyG/Graph6.txt with 4 nodes and 6 edges.
+2,
+threshold reached: False
+duration: 0.0
+
+Graph custom_tinyG/Graph7.txt with 5 nodes and 10 edges.
+1,
+threshold reached: False
+duration: 0.0009999275207519531
+
+Graph custom_tinyG/Graph8.txt with 12 nodes and 25 edges.
+1,6,12,8,2,
+threshold reached: False
+duration: 0.0
+
+Graph custom_tinyG/Graph9.txt with 4 nodes and 6 edges.
+2,
+threshold reached: False
+duration: 0.0
+

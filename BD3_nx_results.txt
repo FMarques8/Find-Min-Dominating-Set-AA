@@ -1,0 +1,459 @@
+#############################
+BD3/ graphs
+#############################
+
+Graph BD3/Grafo1.txt with 51 nodes and 438 edges.
+0,1,32,33,42,43,12,50,25,
+threshold reached: False
+duration: 0.0010008811950683594
+
+Graph BD3/Grafo10.txt with 96 nodes and 2789 edges.
+0,1,68,18,86,87,
+threshold reached: False
+duration: 0.0
+
+Graph BD3/Grafo11.txt with 101 nodes and 2546 edges.
+0,1,100,8,82,83,92,93,31,
+threshold reached: False
+duration: 0.0009992122650146484
+
+Graph BD3/Grafo12.txt with 106 nodes and 3477 edges.
+0,1,97,98,6,105,42,28,
+threshold reached: False
+duration: 0.0
+
+Graph BD3/Grafo13.txt with 111 nodes and 3853 edges.
+0,1,101,102,21,
+threshold reached: False
+duration: 0.0010006427764892578
+
+Graph BD3/Grafo14.txt with 116 nodes and 3562 edges.
+0,1,97,33,98,107,108,115,20,
+threshold reached: False
+duration: 0.0009999275207519531
+
+Graph BD3/Grafo15.txt with 121 nodes and 3908 edges.
+0,1,5,102,103,112,113,120,
+threshold reached: False
+duration: 0.0
+
+Graph BD3/Grafo16.txt with 126 nodes and 5046 edges.
+0,1,10,116,117,86,
+threshold reached: False
+duration: 0.0010006427764892578
+
+Graph BD3/Grafo17.txt with 131 nodes and 4755 edges.
+0,1,130,4,122,112,113,52,90,123,
+threshold reached: False
+duration: 0.0010001659393310547
+
+Graph BD3/Grafo18.txt with 136 nodes and 5972 edges.
+0,1,42,76,111,126,127,
+threshold reached: False
+duration: 0.0
+
+Graph BD3/Grafo19.txt with 141 nodes and 6455 edges.
+0,1,32,131,132,8,
+threshold reached: False
+duration: 0.0010001659393310547
+
+Graph BD3/Grafo2.txt with 56 nodes and 823 edges.
+0,1,10,46,47,27,
+threshold reached: False
+duration: 0.0010001659393310547
+
+Graph BD3/Grafo20.txt with 146 nodes and 6949 edges.
+0,1,136,137,15,
+threshold reached: False
+duration: 0.0
+
+Graph BD3/Grafo21.txt with 151 nodes and 7485 edges.
+0,1,137,138,141,142,26,
+threshold reached: False
+duration: 0.0010006427764892578
+
+Graph BD3/Grafo22.txt with 156 nodes and 7052 edges.
+0,1,137,138,20,148,23,152,153,154,155,
+threshold reached: False
+duration: 0.0009999275207519531
+
+Graph BD3/Grafo23.txt with 161 nodes and 8587 edges.
+0,1,32,105,110,151,152,
+threshold reached: False
+duration: 0.0
+
+Graph BD3/Grafo24.txt with 166 nodes and 9156 edges.
+0,1,65,103,143,157,156,61,
+threshold reached: False
+duration: 0.002000570297241211
+
+Graph BD3/Grafo25.txt with 171 nodes and 8697 edges.
+0,1,153,162,163,170,11,12,152,121,
+threshold reached: False
+duration: 0.0
+
+Graph BD3/Grafo26.txt with 176 nodes and 10346 edges.
+0,1,165,168,44,173,174,175,172,
+threshold reached: False
+duration: 0.0
+
+Graph BD3/Grafo27.txt with 181 nodes and 9807 edges.
+0,1,162,163,172,173,180,158,30,
+threshold reached: False
+duration: 0.0010006427764892578
+
+Graph BD3/Grafo28.txt with 186 nodes and 10476 edges.
+0,1,167,168,15,177,178,185,30,
+threshold reached: False
+duration: 0.0010006427764892578
+
+Graph BD3/Grafo29.txt with 191 nodes and 12272 edges.
+0,1,5,44,85,181,182,
+threshold reached: False
+duration: 0.0
+
+Graph BD3/Grafo3.txt with 61 nodes and 692 edges.
+0,1,41,42,43,14,52,53,60,
+threshold reached: False
+duration: 0.0010001659393310547
+
+Graph BD3/Grafo30.txt with 196 nodes and 13055 edges.
+0,1,131,49,186,187,
+threshold reached: False
+duration: 0.0009999275207519531
+
+Graph BD3/Grafo31.txt with 201 nodes and 13727 edges.
+0,1,192,9,88,29,191,
+threshold reached: False
+duration: 0.0009999275207519531
+
+Graph BD3/Grafo32.txt with 206 nodes and 13179 edges.
+0,1,32,197,198,12,109,205,187,188,
+threshold reached: False
+duration: 0.0010006427764892578
+
+Graph BD3/Grafo33.txt with 211 nodes and 15185 edges.
+0,1,66,163,201,202,21,
+threshold reached: False
+duration: 0.0010001659393310547
+
+Graph BD3/Grafo34.txt with 216 nodes and 15920 edges.
+0,1,130,131,206,207,
+threshold reached: False
+duration: 0.0010004043579101562
+
+Graph BD3/Grafo35.txt with 221 nodes and 15279 edges.
+0,1,42,202,203,212,181,213,121,220,
+threshold reached: False
+duration: 0.0019996166229248047
+
+Graph BD3/Grafo36.txt with 226 nodes and 17520 edges.
+0,1,134,135,216,217,
+threshold reached: False
+duration: 0.0020003318786621094
+
+Graph BD3/Grafo37.txt with 231 nodes and 18305 edges.
+0,1,33,14,177,221,222,
+threshold reached: False
+duration: 0.0010008811950683594
+
+Graph BD3/Grafo38.txt with 236 nodes and 17632 edges.
+0,1,227,228,235,48,24,217,218,124,
+threshold reached: False
+duration: 0.0010004043579101562
+
+Graph BD3/Grafo39.txt with 241 nodes and 18502 edges.
+0,1,232,233,171,240,17,56,222,223,
+threshold reached: False
+duration: 0.0010001659393310547
+
+Graph BD3/Grafo4.txt with 66 nodes and 870 edges.
+0,1,65,13,47,48,57,58,
+threshold reached: False
+duration: 0.0010001659393310547
+
+Graph BD3/Grafo40.txt with 246 nodes and 19432 edges.
+0,1,227,228,237,238,177,19,245,
+threshold reached: False
+duration: 0.0019996166229248047
+
+Graph BD3/Grafo41.txt with 251 nodes and 20219 edges.
+0,1,37,232,233,11,242,243,21,250,
+threshold reached: False
+duration: 0.0010023117065429688
+
+Graph BD3/Grafo42.txt with 256 nodes and 21065 edges.
+0,1,237,238,16,247,248,57,255,
+threshold reached: False
+duration: 0.0009992122650146484
+
+Graph BD3/Grafo43.txt with 261 nodes and 23647 edges.
+0,1,258,259,260,129,130,257,83,253,
+threshold reached: False
+duration: 0.0020003318786621094
+
+Graph BD3/Grafo44.txt with 266 nodes and 22808 edges.
+0,1,258,262,263,264,265,107,48,248,249,
+threshold reached: False
+duration: 0.0009996891021728516
+
+Graph BD3/Grafo45.txt with 271 nodes and 23838 edges.
+0,1,5,262,263,105,45,270,252,253,
+threshold reached: False
+duration: 0.0010006427764892578
+
+Graph BD3/Grafo46.txt with 276 nodes and 24759 edges.
+0,1,192,257,258,6,267,268,19,275,
+threshold reached: False
+duration: 0.0010006427764892578
+
+Graph BD3/Grafo47.txt with 281 nodes and 27570 edges.
+0,1,75,271,272,23,
+threshold reached: False
+duration: 0.0009987354278564453
+
+Graph BD3/Grafo48.txt with 286 nodes and 26727 edges.
+0,1,8,267,268,45,277,278,219,285,
+threshold reached: False
+duration: 0.0010013580322265625
+
+Graph BD3/Grafo49.txt with 291 nodes and 27662 edges.
+0,1,96,16,273,274,23,281,282,
+threshold reached: False
+duration: 0.0020003318786621094
+
+Graph BD3/Grafo5.txt with 71 nodes and 1423 edges.
+0,1,67,68,5,70,69,63,
+threshold reached: False
+duration: 0.0010001659393310547
+
+Graph BD3/Grafo50.txt with 296 nodes and 28659 edges.
+0,1,288,295,13,112,277,278,29,287,
+threshold reached: False
+duration: 0.0009996891021728516
+
+Graph BD3/Grafo51.txt with 301 nodes and 29828 edges.
+0,1,292,293,7,300,15,181,282,283,
+threshold reached: False
+duration: 0.0020008087158203125
+
+Graph BD3/Grafo52.txt with 306 nodes and 30908 edges.
+0,1,288,133,297,298,17,305,284,287,
+threshold reached: False
+duration: 0.001001596450805664
+
+Graph BD3/Grafo53.txt with 311 nodes and 33957 edges.
+0,1,164,301,302,24,31,
+threshold reached: False
+duration: 0.001999378204345703
+
+Graph BD3/Grafo54.txt with 316 nodes and 33041 edges.
+0,1,98,297,298,171,48,307,308,21,315,
+threshold reached: False
+duration: 0.0036096572875976562
+
+Graph BD3/Grafo55.txt with 321 nodes and 34174 edges.
+0,1,320,193,302,303,15,312,313,
+threshold reached: False
+duration: 0.003000497817993164
+
+Graph BD3/Grafo56.txt with 326 nodes and 37459 edges.
+0,1,17,18,21,316,317,
+threshold reached: False
+duration: 0.004000663757324219
+
+Graph BD3/Grafo57.txt with 331 nodes and 38642 edges.
+0,1,65,321,322,10,272,
+threshold reached: False
+duration: 0.002001047134399414
+
+Graph BD3/Grafo58.txt with 336 nodes and 37715 edges.
+0,1,6,327,328,143,335,317,318,
+threshold reached: False
+duration: 0.0030324459075927734
+
+Graph BD3/Grafo59.txt with 341 nodes and 38888 edges.
+0,1,322,323,5,69,12,332,333,340,
+threshold reached: False
+duration: 0.003968477249145508
+
+Graph BD3/Grafo6.txt with 76 nodes and 1250 edges.
+0,1,68,72,73,10,74,75,57,26,60,
+threshold reached: False
+duration: 0.0010013580322265625
+
+Graph BD3/Grafo60.txt with 346 nodes and 42329 edges.
+0,1,322,261,336,337,287,
+threshold reached: False
+duration: 0.0019991397857666016
+
+Graph BD3/Grafo61.txt with 351 nodes and 41448 edges.
+0,1,332,13,333,271,305,342,343,350,
+threshold reached: False
+duration: 0.0030007362365722656
+
+Graph BD3/Grafo62.txt with 356 nodes and 44830 edges.
+0,1,202,12,178,347,346,155,
+threshold reached: False
+duration: 0.005001068115234375
+
+Graph BD3/Grafo63.txt with 361 nodes and 43889 edges.
+0,1,352,353,360,11,272,53,342,343,26,
+threshold reached: False
+duration: 0.003000497817993164
+
+Graph BD3/Grafo64.txt with 366 nodes and 47353 edges.
+0,1,36,356,357,296,348,
+threshold reached: False
+duration: 0.006002664566040039
+
+Graph BD3/Grafo65.txt with 371 nodes and 46338 edges.
+0,1,352,353,263,362,363,14,370,189,
+threshold reached: False
+duration: 0.00500035285949707
+
+Graph BD3/Grafo66.txt with 376 nodes and 47699 edges.
+0,1,357,358,9,367,368,213,375,29,
+threshold reached: False
+duration: 0.0030002593994140625
+
+Graph BD3/Grafo67.txt with 381 nodes and 51596 edges.
+0,1,262,303,371,372,54,23,
+threshold reached: False
+duration: 0.006001949310302734
+
+Graph BD3/Grafo68.txt with 386 nodes and 52957 edges.
+0,1,260,274,376,377,
+threshold reached: False
+duration: 0.0020008087158203125
+
+Graph BD3/Grafo69.txt with 391 nodes and 51998 edges.
+0,1,390,268,372,21,373,382,383,
+threshold reached: False
+duration: 0.00400090217590332
+
+Graph BD3/Grafo7.txt with 81 nodes and 1477 edges.
+0,1,72,73,80,19,62,63,
+threshold reached: False
+duration: 0.0
+
+Graph BD3/Grafo70.txt with 396 nodes and 55811 edges.
+0,1,386,387,263,264,44,
+threshold reached: False
+duration: 0.004000663757324219
+
+Graph BD3/Grafo71.txt with 401 nodes and 54676 edges.
+0,1,64,65,392,393,400,371,221,382,383,
+threshold reached: False
+duration: 0.0020003318786621094
+
+Graph BD3/Grafo72.txt with 406 nodes and 56211 edges.
+0,1,387,388,42,397,398,303,405,278,
+threshold reached: False
+duration: 0.004001140594482422
+
+Graph BD3/Grafo73.txt with 411 nodes and 60311 edges.
+0,1,261,108,401,402,315,29,
+threshold reached: False
+duration: 0.005000591278076172
+
+Graph BD3/Grafo74.txt with 416 nodes and 59047 edges.
+0,1,397,398,407,408,28,29,190,415,
+threshold reached: False
+duration: 0.004001617431640625
+
+Graph BD3/Grafo75.txt with 421 nodes and 63292 edges.
+0,1,288,261,411,412,
+threshold reached: False
+duration: 0.006000995635986328
+
+Graph BD3/Grafo76.txt with 426 nodes and 62205 edges.
+0,1,417,418,37,408,327,425,407,24,25,
+threshold reached: False
+duration: 0.00600123405456543
+
+Graph BD3/Grafo77.txt with 431 nodes and 66431 edges.
+0,1,259,421,422,267,363,399,
+threshold reached: False
+duration: 0.0029997825622558594
+
+Graph BD3/Grafo78.txt with 436 nodes and 65366 edges.
+0,1,417,418,10,427,428,81,435,86,124,
+threshold reached: False
+duration: 0.004000663757324219
+
+Graph BD3/Grafo79.txt with 441 nodes and 69572 edges.
+0,1,431,432,274,22,316,
+threshold reached: False
+duration: 0.0030014514923095703
+
+Graph BD3/Grafo8.txt with 86 nodes and 1717 edges.
+0,1,67,68,77,14,78,85,28,
+threshold reached: False
+duration: 0.0
+
+Graph BD3/Grafo80.txt with 446 nodes and 71204 edges.
+0,1,44,16,17,436,437,
+threshold reached: False
+duration: 0.004000425338745117
+
+Graph BD3/Grafo81.txt with 451 nodes and 70036 edges.
+0,1,450,76,432,433,82,442,443,31,
+threshold reached: False
+duration: 0.006001472473144531
+
+Graph BD3/Grafo82.txt with 456 nodes and 71754 edges.
+0,1,448,4,455,44,437,438,411,447,
+threshold reached: False
+duration: 0.00400090217590332
+
+Graph BD3/Grafo83.txt with 461 nodes and 76383 edges.
+0,1,451,4,452,166,279,
+threshold reached: False
+duration: 0.0050013065338134766
+
+Graph BD3/Grafo84.txt with 466 nodes and 75070 edges.
+0,1,64,448,457,458,14,465,213,447,
+threshold reached: False
+duration: 0.00400090217590332
+
+Graph BD3/Grafo85.txt with 471 nodes and 79681 edges.
+0,1,100,9,461,462,273,
+threshold reached: False
+duration: 0.004001140594482422
+
+Graph BD3/Grafo86.txt with 476 nodes and 81431 edges.
+0,1,466,467,20,376,319,
+threshold reached: False
+duration: 0.003000497817993164
+
+Graph BD3/Grafo87.txt with 481 nodes and 82999 edges.
+0,1,36,46,206,18,471,472,
+threshold reached: False
+duration: 0.007001638412475586
+
+Graph BD3/Grafo88.txt with 486 nodes and 84944 edges.
+0,1,76,46,19,476,477,
+threshold reached: False
+duration: 0.003000020980834961
+
+Graph BD3/Grafo89.txt with 491 nodes and 83612 edges.
+0,1,482,483,137,490,15,20,472,473,
+threshold reached: False
+duration: 0.005001544952392578
+
+Graph BD3/Grafo9.txt with 91 nodes and 2482 edges.
+0,1,81,82,24,30,
+threshold reached: False
+duration: 0.0
+
+Graph BD3/Grafo90.txt with 496 nodes and 85265 edges.
+0,1,487,488,495,17,50,477,478,
+threshold reached: False
+duration: 0.002001523971557617
+
+Graph BD3/Grafo91.txt with 501 nodes and 90448 edges.
+0,1,491,492,93,92,29,63,
+threshold reached: False
+duration: 0.00400090217590332
+
