@@ -11,6 +11,8 @@
 ## Random algorithms to find the minimum dominating sets of a graph.
 ### Back to this topic again, this time employing random and probabilistic algorithms.
 
+### Somewhat of a warning here: careful when planning on running the algorithms as computing the graphs with up to 500 nodes took me an entire day, using an AMD 7 Ryzen 5800H.
+
 For this project, the probabilities are uniform as only functions from module *random* were used. It is possible to alter the probabilities to favour certain set sizes or which node to pick, however this seemed pointless and so, it was not used.
 
 To solve the problem, two different modifications of the greedy heuristic were used. One chooses random nodes and if it's a dominant set it is added to a list and in the end, only the smallest sets are kept and assumed the gamma sets. The other does the same but minimizes the size of the set. A third function, employing once again, functions from the module *networkx* were used, in a similar fashion to the previous project. However, the algorithm also minimizes the dominant sets until it finds a given number of sets.
