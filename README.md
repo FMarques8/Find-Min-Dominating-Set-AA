@@ -8,7 +8,7 @@
 
  Decided to compare the running time and algorithm complexity of my is_dom_set function to the networkx function is_dominating_set which is very efficient since it applies graph theory to the verification instead of manually checking the nodes and their connections.
 
-## Random algorithms to find the minimum dominating sets of a graph.
+## Probabilistic algorithms to find the minimum dominating sets of a graph.
 ### Back to this topic again, this time employing random and probabilistic algorithms.
 
 ### Somewhat of a warning here: careful when planning on running the algorithms as computing the graphs with up to 500 nodes took me an entire day, using an AMD 7 Ryzen 5800H.
